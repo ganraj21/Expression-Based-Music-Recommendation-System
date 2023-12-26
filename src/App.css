@@ -1,21 +1,43 @@
 .App {
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
+.Prediction {
+  font-size: 30px;
+  text-shadow: 0 0 3px #926850, 0 0 5px #060b0c;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+.ph_container {
+  width: 420px;
+  height: 500px;
+  background: #29292957;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone_container {
+  background-image: linear-gradient(
+    to right,
+    #b8cbb8 0%,
+    #b8cbb8 0%,
+    #b465da 0%,
+    #cf6cc9 33%,
+    #ee609c 66%,
+    #ee609c 100%
+  );
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +57,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* --------------------- */
+
+.startRec,
+button {
+  color: #fff;
+  border: 1px solid;
+  padding: 1px 40px;
+  height: 40px;
+}
+
+#emotion_text {
+  background: none;
+  color: #fff;
+  margin: 10px;
+  padding-left: 12px;
+  border: 1px solid;
+  height: 40px;
+}
+
+.front_page_container {
+  background: #050016;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.webcam-container,
+.container_header {
+  width: 50%;
+}
+.webcam-container {
+  display: flex;
+  position: relative;
+}
+.container_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
