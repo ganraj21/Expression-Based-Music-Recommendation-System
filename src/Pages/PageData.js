@@ -5,7 +5,7 @@ const PageData = [
     work_img:
       'https://i.scdn.co/image/ab67706f00000002d956ab5fb54472ff399b1ccd',
     ref_path: '',
-    description: '',
+    description: 'Trending dance hits in India. Cover: Karan Aujla & Tiesto',
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const PageData = [
     work_img:
       'https://i.scdn.co/image/ab67706f000000029b6b827913a29a7aee530f05',
     ref_path: '',
-    description: '',
+    description: `Every track you're listening/should be listening to ;) Cover- Animal`,
   },
   {
     id: 3,
@@ -21,7 +21,8 @@ const PageData = [
     work_img:
       'https://i.scdn.co/image/ab67706f0000000222577b3db1e8be5cb4a9c550',
     ref_path: '',
-    description: '',
+    description:
+      'Turn down the lights, these are the biggest house bangers. Cover - Kapoor & Sons',
   },
   {
     id: 4,
@@ -29,7 +30,8 @@ const PageData = [
     work_img:
       'https://i.scdn.co/image/ab67706f00000002f93dacf1ba13fab3a852c5e7',
     ref_path: '',
-    description: '',
+    description:
+      'Bollywood Central, jab baje toh seedha dil ke centre mein lage ❤️',
   },
 ];
 export default PageData;
