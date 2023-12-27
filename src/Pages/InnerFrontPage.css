@@ -14,18 +14,65 @@
 }
 
 .msCard h4,
-.msCard h6 {
+.subTitle {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.navHeader,
+.pageContainer,
+.rightMainContainer,
+.sideBarContainer,
+.musicSectionCard,
+.msCard h6,
+.userProfileIcons,
+.navSlider,
+.sidebarHome,
+.sidebarSearch,
+.rightIcon,
+.leftIcon,
+.userProfile,
+.notificationBell,
+.musicSectionCard {
+  display: flex;
+}
+
+.navSlider,
+.userProfileIcons {
+  gap: 12px;
+}
+.userProfile,
+.notificationBell,
+.rightIcon,
+.leftIcon,
+.msCard,
+.sidebarHome,
+.sidebarSearch {
+  cursor: pointer;
+}
+.navHeader,
+.msCard,
+.msCard img,
+.sidebarHome,
+.sidebarSearch {
+  border-radius: 10px;
+}
+
+.navHeader:hover,
+.sidebarHome:hover,
+.sidebarSearch:hover {
+  background: #2a2929;
 }
 /* -------------------------- navbar -------------------- */
 .navHeader {
   top: 0;
-  display: flex;
-  height: 54px;
-  background: #2a2929;
+  height: 62px;
+  padding: 15px;
   position: sticky;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ------------------------ main containers ------------------------- */
@@ -33,20 +80,17 @@
   gap: 10px;
   width: 100%;
   height: 100vh;
-  display: flex;
 }
 
 .rightMainContainer {
-  display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 80%;
+  width: 75%;
   margin: 10px 10px 10px 0;
 }
 .sideBarContainer {
-  width: 20%;
+  width: 25%;
   margin: 10px 0 10px 10px;
-  display: flex;
   flex-direction: column;
   gap: 10px;
 }
@@ -59,30 +103,59 @@
 /* -------------------- music card  ----------------- */
 
 .musicSectionCard {
-  display: flex;
   gap: 27px;
   padding: 20px;
+  justify-content: space-evenly;
 }
 .msCard {
-  height: 230px;
+  /* height: 230px; */
   width: 190px;
   padding: 16px;
-  background: #3b3b39;
-  border-radius: 10px;
-  cursor: pointer;
+  background: #3b3b394f;
+}
+.msCard:hover {
+  background: #3b3b397d;
 }
 .msCard img {
-  border-radius: 10px;
+  margin-bottom: 9px;
 }
 .msCard h4 {
   font-size: 1rem;
   font-weight: 700;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.msCard h6 {
+.msCard h5 {
   font-size: 0.875rem;
   width: 150px;
-  display: flex;
-  color: #aaa7a7;
+  color: #a7a7a7;
+  -webkit-line-clamp: 2;
+}
+
+/* ------------------------- navHeader -------------------- */
+.rightIcon,
+.leftIcon,
+.userProfile,
+.notificationBell {
+  background: #000000b3;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+}
+.dayGreeting {
+  font-size: 2rem;
+  font-weight: 700;
+  padding-left: 18px;
+}
+/* ------------------------ sideBarContainer --------------------- */
+.sidebarHome,
+.sidebarSearch {
+  align-items: center;
+  gap: 20px;
+  font-size: 15px;
+  height: 40px;
+  font-weight: 700;
+  margin: 6px;
+  padding: 0px 0 0px 12px;
+  align-items: center;
 }

@@ -33,5 +33,14 @@ const PageData = [
     description:
       'Bollywood Central, jab baje toh seedha dil ke centre mein lage ❤️',
   },
+  {
+    id: 5,
+    title: 'Hot Hits Punjabi',
+    work_img:
+      'https://i.scdn.co/image/ab67706f00000002118ecaf6c5151716f13fd0b1',
+    ref_path: '',
+    description:
+      'Catch the hottest Punjabi tracks with Sidhu Moose Wala on the cover for his track "Watch out"',
+  },
 ];
 export default PageData;

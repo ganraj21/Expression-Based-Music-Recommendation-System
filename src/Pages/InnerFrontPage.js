@@ -26,11 +26,12 @@ const InnerFrontPage = () => {
         <div className="pageContainer">
           <div className="sideBarContainer">
             <div className="topNav">
-              <span>
-                <GoHome /> Home
+              <span className="sidebarHome">
+                <GoHome style={{ height: '30px', width: '27px' }} /> Home
               </span>
-              <span>
-                <IoSearchOutline /> Search
+              <span className="sidebarSearch">
+                <IoSearchOutline style={{ height: '30px', width: '27px' }} />
+                Search
               </span>
             </div>
             <div className="bottomOperations">
@@ -50,19 +51,29 @@ const InnerFrontPage = () => {
           </div>
           <div className="rightMainContainer">
             <div className="navHeader">
-              <span>
-                <FaAngleLeft />
-              </span>
-              <span>
-                <FaAngleRight />
-              </span>
-              <span>
-                <FaRegBell />
-              </span>
-              <span>
-                <FaUser />
-              </span>
+              <div className="navSlider">
+                <span className="leftIcon">
+                  <FaAngleLeft
+                    style={{ height: '30px', width: '15px', fontWeight: '100' }}
+                  />
+                </span>
+                <span className="rightIcon">
+                  <FaAngleRight
+                    style={{ height: '30px', width: '15px', fontWeight: '100' }}
+                  />
+                </span>
+              </div>
+
+              <div className="userProfileIcons">
+                <span className="notificationBell">
+                  <FaRegBell style={{ height: '21px', width: '15px' }} />
+                </span>
+                <span className="userProfile">
+                  <FaUser style={{ height: '21px', width: '15px' }} />
+                </span>
+              </div>
             </div>
+            <div className="dayGreeting">Good evening</div>
             <div className="musicSectionCard">
               {PageData.map((e, index) => {
                 return (
@@ -71,9 +82,9 @@ const InnerFrontPage = () => {
                     <h4 className="mainTitle" title={e.title}>
                       {e.title}
                     </h4>
-                    <h6 className="subTitle" title={e.description}>
+                    <h5 className="subTitle" title={e.description}>
                       {e.description}
-                    </h6>
+                    </h5>
                   </div>
                 );
               })}
