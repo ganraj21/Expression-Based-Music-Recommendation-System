@@ -35,16 +35,23 @@ const InnerFrontPage = () => {
               </span>
             </div>
             <div className="bottomOperations">
-              <span>
-                <MdLibraryMusic />
-                Your Library
-              </span>
-              <span>
-                <FaPlus />
-              </span>
-              <span>
-                <FaArrowRight />
-              </span>
+              <div className="createLiOptions">
+                <span className="musicLibrary" title="Enlarge Your Library">
+                  <MdLibraryMusic />
+                  <h5>Your Library</h5>
+                </span>
+                <div className="createMore">
+                  <span
+                    className="createNewPlaylist"
+                    title="Create playlist or folder"
+                  >
+                    <FaPlus />
+                  </span>
+                  <span className="showMore" title="show more">
+                    <FaArrowRight />
+                  </span>
+                </div>
+              </div>
               <span>Playlists</span>
               <span>Artists</span>
             </div>
@@ -73,22 +80,30 @@ const InnerFrontPage = () => {
                 </span>
               </div>
             </div>
-            <div className="dayGreeting">Good evening</div>
-            <div className="musicSectionCard">
-              {PageData.map((e, index) => {
-                return (
-                  <div className="msCard" key={index}>
-                    <img src={e.work_img} alt="music section" />
-                    <h4 className="mainTitle" title={e.title}>
-                      {e.title}
-                    </h4>
-                    <h5 className="subTitle" title={e.description}>
-                      {e.description}
-                    </h5>
+            {PageData.map((a, id) => {
+              return (
+                <>
+                  <div className="dayGreeting" key={id}>
+                    {a.mainTitle}
                   </div>
-                );
-              })}
-            </div>
+                  <div className="musicSectionCard">
+                    {a.subTopicks.map((e, index) => {
+                      return (
+                        <div className="msCard" key={index}>
+                          <img src={e.work_img} alt="music section" />
+                          <h4 className="mainTitle" title={e.title}>
+                            {e.title}
+                          </h4>
+                          <h5 className="subTitle" title={e.description}>
+                            {e.description}
+                          </h5>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

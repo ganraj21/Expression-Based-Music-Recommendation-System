@@ -4,6 +4,10 @@
   height: 100vh;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 /*----------------------- golbal styles --------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,500;1,800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400;1,700&display=swap');
 .rightMainContainer,
@@ -35,7 +39,10 @@
 .leftIcon,
 .userProfile,
 .notificationBell,
-.musicSectionCard {
+.musicSectionCard,
+.createLiOptions,
+.musicLibrary,
+.createMore {
   display: flex;
 }
 
@@ -49,7 +56,10 @@
 .leftIcon,
 .msCard,
 .sidebarHome,
-.sidebarSearch {
+.sidebarSearch,
+.musicLibrary,
+.showMore,
+.createNewPlaylist {
   cursor: pointer;
 }
 .navHeader,
@@ -60,7 +70,6 @@
   border-radius: 10px;
 }
 
-.navHeader:hover,
 .sidebarHome:hover,
 .sidebarSearch:hover {
   background: #2a2929;
@@ -69,10 +78,11 @@
 .navHeader {
   top: 0;
   height: 62px;
-  padding: 15px;
+  padding: 10px 15px;
   position: sticky;
   justify-content: space-between;
   align-items: center;
+  background: #2a2929;
 }
 
 /* ------------------------ main containers ------------------------- */
@@ -86,7 +96,10 @@
   flex-direction: column;
   gap: 10px;
   width: 75%;
+  padding: 15px;
   margin: 10px 10px 10px 0;
+  overflow: scroll;
+  position: relative;
 }
 .sideBarContainer {
   width: 25%;
@@ -104,13 +117,13 @@
 
 .musicSectionCard {
   gap: 27px;
-  padding: 20px;
+  padding: 10px 20px;
   justify-content: space-evenly;
 }
 .msCard {
-  /* height: 230px; */
+  height: 250px;
   width: 190px;
-  padding: 16px;
+  padding: 15px 12px;
   background: #3b3b394f;
 }
 .msCard:hover {
@@ -143,7 +156,7 @@
   align-items: center;
 }
 .dayGreeting {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   padding-left: 18px;
 }
@@ -158,4 +171,19 @@
   margin: 6px;
   padding: 0px 0 0px 12px;
   align-items: center;
+}
+
+.createLiOptions {
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.musicLibrary {
+  align-items: center;
+  gap: 15px;
+}
+.createMore {
+  gap: 15px;
 }
