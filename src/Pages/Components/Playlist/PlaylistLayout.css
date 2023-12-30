@@ -81,7 +81,11 @@
 .musicLabelInfoImage img {
   border-radius: 6px;
 }
+.labelRow {
+  cursor: pointer;
+}
 .labelRow:hover {
   background: #2a2929;
   color: #fff !important;
+  border-radius: 9px;
 }

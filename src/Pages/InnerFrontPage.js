@@ -101,8 +101,8 @@ const InnerFrontPage = () => {
           </div>
           <div className="rightMainContainer">
             <NavHeader />
-            {/* <CardLayout /> */}
-            <PlaylistLayout />
+            <CardLayout />
+            {/* <PlaylistLayout /> */}
           </div>
         </div>
       </div>

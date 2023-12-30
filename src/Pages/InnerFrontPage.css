@@ -63,7 +63,8 @@
 .sidebarSearch,
 .musicLibrary,
 .showMore,
-.createNewPlaylist {
+.createNewPlaylist,
+.libraryplcontainer {
   cursor: pointer;
 }
 .navHeader,
