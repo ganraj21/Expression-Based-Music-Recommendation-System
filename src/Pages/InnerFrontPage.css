@@ -42,7 +42,11 @@
 .musicSectionCard,
 .createLiOptions,
 .musicLibrary,
-.createMore {
+.createMore,
+.libraryPlayListContainer,
+.libraryplcontainer,
+.libraryInfo,
+.sortActions {
   display: flex;
 }
 
@@ -85,6 +89,11 @@
   background: #2a2929;
 }
 
+.navOutContainer {
+  position: sticky;
+  top: 0;
+}
+
 /* ------------------------ main containers ------------------------- */
 .pageContainer {
   gap: 10px;
@@ -96,7 +105,7 @@
   flex-direction: column;
   gap: 10px;
   width: 75%;
-  padding: 15px;
+  /* padding: 15px; */
   margin: 10px 10px 10px 0;
   overflow: scroll;
   position: relative;
@@ -158,7 +167,7 @@
 .dayGreeting {
   font-size: 1.8rem;
   font-weight: 700;
-  padding-left: 18px;
+  padding: 9px 18px;
 }
 /* ------------------------ sideBarContainer --------------------- */
 .sidebarHome,
@@ -186,4 +195,28 @@
 }
 .createMore {
   gap: 15px;
+}
+
+.libraryImg {
+  height: 54px;
+  width: 54px;
+}
+.libraryImg img {
+  border-radius: 6px;
+}
+.libraryInfo {
+  flex-direction: column;
+}
+.libraryplcontainer {
+  gap: 15px;
+}
+.libraryPlayListContainer {
+  padding: 15px;
+  flex-direction: column;
+  gap: 10px;
+}
+.sortActions {
+  align-items: center;
+  gap: 15px;
+  padding: 6px 0 6px 15px;
 }

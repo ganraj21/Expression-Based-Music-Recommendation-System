@@ -12,6 +12,9 @@ import {
 } from 'react-icons/fa6';
 import { FaUser, FaRegBell } from 'react-icons/fa';
 import { MdLibraryMusic } from 'react-icons/md';
+import NavHeader from './Components/NavHeader';
+import CardLayout from './Components/CardLayout';
+import PlaylistLayout from './Components/Playlist/PlaylistLayout';
 const InnerFrontPage = () => {
   const navigate = useNavigate();
   // useEffect(() => {
@@ -20,6 +23,29 @@ const InnerFrontPage = () => {
   //     navigate('/');
   //   }
   // });
+
+  const Data = [
+    {
+      number: 1,
+      imageUri: 'https://misc.scdn.co/liked-songs/liked-songs-640.png',
+      mainTitle: 'Liked Songs',
+      subTitle: 'PlayList- User',
+    },
+    {
+      number: 2,
+      imageUri:
+        'https://i.scdn.co/image/ab67706c0000da843e0e16910bea8fa6ead5ca03',
+      mainTitle: 'Car Music',
+      subTitle: 'Playlist • Magic Records',
+    },
+    {
+      number: 3,
+      imageUri:
+        'https://seed-mix-image.spotifycdn.com/v6/img/moody/00FQb4jTyendYWaN8pK0wa/en/default',
+      mainTitle: 'Moody Mix',
+      subTitle: 'Lana Del Rey and more',
+    },
+  ];
   return (
     <>
       <div className="InnerPageSection">
@@ -52,58 +78,31 @@ const InnerFrontPage = () => {
                   </span>
                 </div>
               </div>
-              <span>Playlists</span>
-              <span>Artists</span>
+              <div className="sortActions">
+                <span>Playlists</span>
+                <span>Artists</span>
+              </div>
+              <div className="libraryPlayListContainer">
+                {Data.map((e, index) => {
+                  return (
+                    <div className="libraryplcontainer" key={index}>
+                      <div className="libraryImg">
+                        <img src={e.imageUri} alt="playlist img" />
+                      </div>
+                      <div className="libraryInfo">
+                        <span className="libraryCardTitle">{e.mainTitle}</span>
+                        <span className="librarySubTitle">{e.subTitle}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className="rightMainContainer">
-            <div className="navHeader">
-              <div className="navSlider">
-                <span className="leftIcon">
-                  <FaAngleLeft
-                    style={{ height: '30px', width: '15px', fontWeight: '100' }}
-                  />
-                </span>
-                <span className="rightIcon">
-                  <FaAngleRight
-                    style={{ height: '30px', width: '15px', fontWeight: '100' }}
-                  />
-                </span>
-              </div>
-
-              <div className="userProfileIcons">
-                <span className="notificationBell">
-                  <FaRegBell style={{ height: '21px', width: '15px' }} />
-                </span>
-                <span className="userProfile">
-                  <FaUser style={{ height: '21px', width: '15px' }} />
-                </span>
-              </div>
-            </div>
-            {PageData.map((a, id) => {
-              return (
-                <>
-                  <div className="dayGreeting" key={id}>
-                    {a.mainTitle}
-                  </div>
-                  <div className="musicSectionCard">
-                    {a.subTopicks.map((e, index) => {
-                      return (
-                        <div className="msCard" key={index}>
-                          <img src={e.work_img} alt="music section" />
-                          <h4 className="mainTitle" title={e.title}>
-                            {e.title}
-                          </h4>
-                          <h5 className="subTitle" title={e.description}>
-                            {e.description}
-                          </h5>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </>
-              );
-            })}
+            <NavHeader />
+            {/* <CardLayout /> */}
+            <PlaylistLayout />
           </div>
         </div>
       </div>

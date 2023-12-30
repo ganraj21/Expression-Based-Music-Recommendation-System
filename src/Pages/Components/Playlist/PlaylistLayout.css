@@ -1,0 +1,87 @@
+/* ------------------------ global styles ------------------------- */
+
+.respectiveMusicInfo,
+.cardInfo,
+.operationSection,
+.listIcon,
+.musicLabelInfo,
+.labelInfo {
+  display: flex;
+}
+
+.loveIcon,
+.playPauseIcon,
+.listIconBtn {
+  font-size: 21px;
+  cursor: pointer;
+}
+.subTitleName,
+.labelAlbumName,
+.labelTimeZone,
+.labelNumber {
+  color: #a7a7a7;
+}
+/* ---------------------------- .cardInfo ----------------------------- */
+
+.respectiveMusicInfo {
+  gap: 18px;
+  padding: 15px;
+  background: #44448733;
+}
+.cardInfo {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.headerTitle {
+  font-size: 45px;
+  font-weight: bold;
+}
+/* -------------------------------- card image ------------------------------ */
+
+.cardImage {
+  width: 175px;
+  height: 175px;
+}
+.cardImage img {
+  border-radius: 10px;
+}
+
+/* --------------------------- operation section ------------------------ */
+.operationSection {
+  gap: 20px;
+  height: 60px;
+  align-items: center;
+  padding: 25px 15px 15px 15px;
+}
+
+.listIcon {
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: center;
+}
+
+/* -------------------------------- table styles --------------------------- */
+.playlistContainer {
+  padding: 0px 15px 15px 15px;
+}
+.labelInfo {
+  flex-direction: column;
+}
+.musicLabelInfo {
+  gap: 15px;
+}
+.labeltimeIcon {
+  font-size: 21px;
+}
+.musicLabelInfoImage {
+  height: 60px;
+  width: 60px;
+}
+.musicLabelInfoImage img {
+  border-radius: 6px;
+}
+.labelRow:hover {
+  background: #2a2929;
+  color: #fff !important;
+}
