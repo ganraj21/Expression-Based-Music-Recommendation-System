@@ -1,13 +1,21 @@
 import React from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { FaUser, FaRegBell } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
 const NavHeader = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="navOutContainer">
         <div className="navHeader">
           <div className="navSlider">
-            <span className="leftIcon">
+            <span
+              className="leftIcon"
+              onClick={() => {
+                navigate('/user');
+              }}
+            >
               <FaAngleLeft
                 style={{ height: '30px', width: '15px', fontWeight: '100' }}
               />

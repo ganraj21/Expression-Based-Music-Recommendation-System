@@ -78,14 +78,6 @@ button {
   height: 40px;
 }
 
-.front_page_container {
-  background: #050016;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .webcam-container,
 .container_header {
   width: 50%;

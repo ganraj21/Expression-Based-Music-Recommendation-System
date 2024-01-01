@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as blazeface from '@tensorflow-models/blazeface';
 import toast, { Toaster } from 'react-hot-toast';
 import Webcam from 'react-webcam';
+import './VideoCapture.css';
 
 const VideoCapture = () => {
   const webcamRef = useRef(null);
@@ -126,57 +127,66 @@ const VideoCapture = () => {
     const inputValue = localStorage.getItem('User-Emotion');
     console.log(inputValue);
     if (inputValue) {
-      navigate('/user/aiPlaylist');
+      // navigate('/user/aiPlaylist');
     }
   }, [navigate]);
 
   return (
     <div className="front_page_container">
       <Toaster toastOptions={{ duration: 4000 }} />
-
-      <div className="mx-auto webcam-container">
-        <Webcam
-          ref={webcamRef}
-          style={{
-            position: 'relative',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: 160, // Adjust width
-            height: 120, // Adjust height
-          }}
-        />
-
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: 'relative',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: 160,
-            height: 120, // Adjust height
-          }}
-        />
-      </div>
-      <header className="flex container_header">
-        <div className="w-5/6 Output mx-auto flex items-center">
-          <input
-            id="emotion_text"
-            name="emotion_text"
-            value="Neutral"
+      <div className="cameraSettingComponent">
+        <div className="mainWebCam">
+          <Webcam
+            ref={webcamRef}
             style={{
-              width: 200,
+              position: 'relative',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: 160, // Adjust width
+              height: 120, // Adjust height
             }}
-          ></input>
-
-          <button className="startRec" onClick={captureImage}>
-            Capture Image
-          </button>
-
-          <button className="removeImage" onClick={removeImage}>
-            Remove Image
-          </button>
+          />
         </div>
-      </header>
+
+        <div className="mainCanvas">
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: 'relative',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: 160,
+              height: 120, // Adjust height
+            }}
+          />
+        </div>
+      </div>
+      <div className="operationSettingComponent">
+        <div className="w-5/6 Output mx-auto flex items-center">
+          <div className="InputDectectionDiv">
+            <input
+              id="emotion_text"
+              name="emotion_text"
+              value="Neutral"
+              style={{
+                width: 200,
+              }}
+            />
+          </div>
+
+          <div className="captureImgDiv">
+            <button className="startRec" onClick={captureImage}>
+              Capture Image
+            </button>
+          </div>
+
+          <div className="removeImgdiv">
+            <button className="removeImage" onClick={removeImage}>
+              Remove Image
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

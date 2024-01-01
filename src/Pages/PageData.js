@@ -1,6 +1,6 @@
 const PageData = [
   {
-    mainTitle: 'Good Morning',
+    mainTitle: 'Good',
     subTopicks: [
       {
         id: 1,
