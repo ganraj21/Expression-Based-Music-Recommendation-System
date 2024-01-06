@@ -9,23 +9,23 @@ const SideBarSection = () => {
   const Data = [
     {
       number: 1,
-      imageUri: 'https://misc.scdn.co/liked-songs/liked-songs-640.png',
-      mainTitle: 'Liked Songs',
-      subTitle: 'PlayList- User',
+      work_img: 'https://misc.scdn.co/liked-songs/liked-songs-640.png',
+      title: 'Liked Songs',
+      description: 'PlayList- User',
     },
     {
       number: 2,
-      imageUri:
+      work_img:
         'https://i.scdn.co/image/ab67706c0000da843e0e16910bea8fa6ead5ca03',
-      mainTitle: 'Car Music',
-      subTitle: 'Playlist • Magic Records',
+      title: 'Car Music',
+      description: 'Playlist • Magic Records',
     },
     {
       number: 3,
-      imageUri:
+      work_img:
         'https://seed-mix-image.spotifycdn.com/v6/img/moody/00FQb4jTyendYWaN8pK0wa/en/default',
-      mainTitle: 'Moody Mix',
-      subTitle: 'Lana Del Rey and more',
+      title: 'Moody Mix',
+      description: 'Lana Del Rey and more',
     },
   ];
   return (
@@ -70,13 +70,23 @@ const SideBarSection = () => {
           <div className="libraryPlayListContainer">
             {Data.map((e, index) => {
               return (
-                <div className="libraryplcontainer" key={index}>
+                <div
+                  className="libraryplcontainer"
+                  key={index}
+                  onClick={() => {
+                    navigate(`/user/${index}`, {
+                      state: {
+                        e,
+                      },
+                    });
+                  }}
+                >
                   <div className="libraryImg">
-                    <img src={e.imageUri} alt="playlist img" />
+                    <img src={e.work_img} alt="playlist img" />
                   </div>
                   <div className="libraryInfo">
-                    <span className="libraryCardTitle">{e.mainTitle}</span>
-                    <span className="librarySubTitle">{e.subTitle}</span>
+                    <span className="libraryCardTitle">{e.title}</span>
+                    <span className="librarySubTitle">{e.description}</span>
                   </div>
                 </div>
               );

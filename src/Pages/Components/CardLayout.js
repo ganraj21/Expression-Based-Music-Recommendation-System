@@ -40,7 +40,11 @@ const CardLayout = () => {
                     className="msCard"
                     key={index}
                     onClick={() => {
-                      navigate(`/user/${index}`);
+                      navigate(`/user/${e.title}`, {
+                        state: {
+                          e,
+                        },
+                      });
                     }}
                   >
                     <img src={e.work_img} alt="music section" />

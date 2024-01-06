@@ -10,6 +10,18 @@ const PageData = [
         ref_path: '',
         description:
           'Trending dance hits in India. Cover: Karan Aujla & Tiesto',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 2,
@@ -18,6 +30,18 @@ const PageData = [
           'https://i.scdn.co/image/ab67706f000000029b6b827913a29a7aee530f05',
         ref_path: '',
         description: `Every track you're listening/should be listening to ;) Cover- Animal`,
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '3.16',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 3,
@@ -27,6 +51,18 @@ const PageData = [
         ref_path: '',
         description:
           'Turn down the lights, these are the biggest house bangers. Cover - Kapoor & Sons',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '3.27',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 4,
@@ -36,6 +72,19 @@ const PageData = [
         ref_path: '',
         description:
           'Bollywood Central, jab baje toh seedha dil ke centre mein lage ❤️',
+
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '3.46',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 5,
@@ -45,6 +94,18 @@ const PageData = [
         ref_path: '',
         description:
           'Catch the hottest Punjabi tracks with Sidhu Moose Wala on the cover for his track "Watch out"',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
     ],
   },
@@ -58,6 +119,18 @@ const PageData = [
           'https://seed-mix-image.spotifycdn.com/v6/img/romantic/0GF4shudTAFv8ak9eWdd4Y/en/default',
         ref_path: '',
         description: 'Kishore Kumar,Anu Malik,Pritam',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 2,
@@ -66,6 +139,18 @@ const PageData = [
           'https://seed-mix-image.spotifycdn.com/v6/img/moody/00FQb4jTyendYWaN8pK0wa/en/default',
         ref_path: '',
         description: `Lana Del Rey and more`,
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 3,
@@ -74,6 +159,18 @@ const PageData = [
           'https://seed-mix-image.spotifycdn.com/v6/img/hindi/6CXEwIaXYfVJ84biCxqc9k/en/default',
         ref_path: '',
         description: 'Vishal Dadlani, Shae Gill, Shreya Ghoshal and more',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 4,
@@ -83,6 +180,18 @@ const PageData = [
         ref_path: '',
         description:
           'Your daily update of the most played tracks right now - India.',
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
       {
         id: 5,
@@ -91,6 +200,18 @@ const PageData = [
           'https://i.scdn.co/image/ab67706f0000000207d8a2848f8f57f2f0f69f98',
         ref_path: '',
         description: `India's Rap Scene. Cover- MC SQUARE`,
+        subMusic: [
+          {
+            id: 1,
+            title: 'Chaleya',
+            albumName: 'Jawan',
+            time: '4.26',
+            work_img:
+              'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
+            ref_path: '',
+            description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+          },
+        ],
       },
     ],
   },

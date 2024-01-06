@@ -5,10 +5,10 @@ import { GiPauseButton } from 'react-icons/gi';
 import { FaHeart } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
-const PlaylistLayout = () => {
+const PlaylistLayout = ({ playlistData }) => {
   const [playbtn, isPlayBtn] = useState(0);
   const [likebtn, isLikeBtn] = useState(0);
-
+  console.log(playlistData);
   const tableData = [
     {
       number: 1,
@@ -62,7 +62,7 @@ const PlaylistLayout = () => {
         <div className="respectiveMusicInfo">
           <div className="cardImage">
             <img
-              src="https://i.scdn.co/image/ab67706f0000000207d8a2848f8f57f2f0f69f98"
+              src={playlistData.work_img}
               class="img-fluid rounded-top"
               alt="card"
             />
@@ -70,11 +70,9 @@ const PlaylistLayout = () => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>RAP 91</h1>
+              <h1>{playlistData.title}</h1>
             </span>
-            <span className="subTitle">
-              India's Rap Scene. Cover- MC SQUARE
-            </span>
+            <span className="subTitle">{playlistData.description}</span>
           </div>
         </div>
         <div className="operationSection">
@@ -121,28 +119,24 @@ const PlaylistLayout = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((row, index) => (
+              {playlistData.subMusic.map((row, index) => (
                 <tr key={index} className="labelRow">
                   <td style={tableCellStyle} className="labelNumber">
-                    {row.number}
+                    {row.id}
                   </td>
                   <td style={tableCellStyle}>
                     <div className="musicLabelInfo">
                       <div className="musicLabelInfoImage">
-                        <img src={row.title.imageUri} alt="label Img" />
+                        <img src={row.work_img} alt="label Img" />
                       </div>
                       <div className="labelInfo">
-                        <span className="mainTitleName">
-                          {row.title.mainTitle}
-                        </span>
-                        <span className="subTitleName">
-                          {row.title.subTitle}
-                        </span>
+                        <span className="mainTitleName">{row.title}</span>
+                        <span className="subTitleName">{row.description}</span>
                       </div>
                     </div>
                   </td>
                   <td style={tableCellStyle} className="labelAlbumName">
-                    {row.album}
+                    {row.albumName}
                   </td>
                   <td style={tableCellStyle} className="labelTimeZone">
                     {row.time}
