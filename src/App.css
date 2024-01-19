@@ -69,15 +69,6 @@ button {
   height: 40px;
 }
 
-#emotion_text {
-  background: none;
-  color: #fff;
-  margin: 10px;
-  padding-left: 12px;
-  border: 1px solid;
-  height: 40px;
-}
-
 .webcam-container,
 .container_header {
   width: 50%;

@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
 import { FaHeart } from 'react-icons/fa';
+// import ColorThief from 'color-thief';
 import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
 const PlaylistLayout = ({ playlistData }) => {
   const [playbtn, isPlayBtn] = useState(0);
   const [likebtn, isLikeBtn] = useState(0);
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+  const imageRef = useRef();
   console.log(playlistData);
+
+  // useEffect(() => {
+  //   // Ensure the image is loaded before extracting the color
+  //   imageRef.current.onload = () => {
+  //     const colorThief = new ColorThief();
+  //     const [r, g, b] = colorThief.getColor(imageRef.current);
+  //     setBackgroundColor(`rgb(${r}, ${g}, ${b})`);
+  //   };
+  // }, [playlistData]);
+
   const tableData = [
     {
       number: 1,
