@@ -5,17 +5,18 @@ import { useNavigate } from 'react-router-dom';
 
 const NavHeader = () => {
   const navigate = useNavigate();
+
+  const goBackward = () => {
+    const UserId = localStorage.getItem('UserId');
+    navigate(`/user/${UserId}`);
+  };
+
   return (
     <>
       <div className="navOutContainer">
         <div className="navHeader">
           <div className="navSlider">
-            <span
-              className="leftIcon"
-              onClick={() => {
-                navigate('/user');
-              }}
-            >
+            <span className="leftIcon" onClick={goBackward}>
               <FaAngleLeft
                 style={{ height: '30px', width: '15px', fontWeight: '100' }}
               />

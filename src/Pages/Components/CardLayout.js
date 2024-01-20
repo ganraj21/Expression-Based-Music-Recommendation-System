@@ -40,7 +40,7 @@ const CardLayout = () => {
                     className="msCard"
                     key={index}
                     onClick={() => {
-                      navigate(`/user/${e.title}`, {
+                      navigate(`/user/playlist/${e.title}`, {
                         state: {
                           e,
                         },

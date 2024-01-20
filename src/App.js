@@ -11,8 +11,12 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<PhoneAuth />} />
-          <Route exact path="/user" element={<InnerFrontPage />} />
-          <Route exact path="/user/:id" element={<PlayListContainer />} />
+          <Route exact path="/user/:id" element={<InnerFrontPage />} />
+          <Route
+            exact
+            path="user/playlist/:id"
+            element={<PlayListContainer />}
+          />
           <Route exact path="/user/capture" element={<VideoCapture />} />
           {/* <Route exact path="/user/aiPlaylist" element={<GeneratePlaylist />} /> */}
         </Routes>

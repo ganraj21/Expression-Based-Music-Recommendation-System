@@ -7,14 +7,6 @@ import PlaylistLayout from './Components/Playlist/PlaylistLayout';
 import SideBarSection from './Components/SideBarSection';
 
 const InnerFrontPage = () => {
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   const userPhone = localStorage.getItem('User-Phone');
-  //   if (!userPhone) {
-  //     navigate('/');
-  //   }
-  // });
-
   return (
     <>
       <div className="InnerPageSection">

@@ -2,7 +2,8 @@ import { BsFillShieldLockFill, BsTelephoneFill } from 'react-icons/bs';
 import { CgSpinner } from 'react-icons/cg';
 import OtpInput from 'otp-input-react';
 import PhoneInput from 'react-phone-input-2';
-// import InnerFrontPage from './../Page/InnerFrontPage';
+
+import { useNavigate } from 'react-router-dom';
 import 'react-phone-input-2/lib/style.css';
 import { useState, useEffect } from 'react';
 import { auth } from './../firebase.config';
@@ -21,6 +22,8 @@ const Phone_Auth = () => {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
 
   function onCaptchVarify() {
     if (!window.recaptchaVerifier) {
@@ -65,7 +68,7 @@ const Phone_Auth = () => {
         console.log(res.user);
         setUser(res.user);
         setLoading(false);
-        localStorage.setItem('User-Phone', res.user);
+        localStorage.setItem('UserId', res.user.uid);
       })
       .catch((err) => {
         setLoading(false);
@@ -74,10 +77,13 @@ const Phone_Auth = () => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('User-Phone')) {
-      setUser(localStorage.getItem('User-Phone'));
+    const UserId = localStorage.getItem('UserId');
+    if (UserId) {
+      setUser(localStorage.getItem('UserId'));
     }
-  }, []);
+
+    if (user != null) navigate(`/user/${UserId}`);
+  }, [user]);
   return (
     <section className="phone_container bg-emerald-500 flex items-center justify-center h-screen">
       <div>
@@ -85,8 +91,7 @@ const Phone_Auth = () => {
 
         {user ? (
           <h2 className="text-center text-white font-medium text-2xl">
-            Login Successfull👍
-            {/* <InnerFrontPage /> */}
+            Login Successfull
           </h2>
         ) : (
           <div className="ph_container">
