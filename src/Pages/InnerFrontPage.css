@@ -106,7 +106,6 @@
   flex-direction: column;
   gap: 10px;
   width: 75%;
-  /* padding: 15px; */
   margin: 10px 10px 10px 0;
   overflow: scroll;
   position: relative;
@@ -230,7 +229,8 @@
   }
   .rightMainContainer {
     width: 100%;
-    margin: 10px !important;
+    margin: 0px !important;
+    border-radius: 0px !important;
   }
   .msCard {
     width: 90%;

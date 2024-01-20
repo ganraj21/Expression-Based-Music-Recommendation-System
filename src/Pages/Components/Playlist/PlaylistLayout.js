@@ -11,7 +11,8 @@ const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
   const imageRef = useRef();
-  console.log(playlistData);
+
+  // console.log(playlistData);  check point
 
   // useEffect(() => {
   //   // Ensure the image is loaded before extracting the color
@@ -21,6 +22,9 @@ const PlaylistLayout = ({ playlistData }) => {
   //     setBackgroundColor(`rgb(${r}, ${g}, ${b})`);
   //   };
   // }, [playlistData]);
+
+  const CardInfo = JSON.parse(localStorage.getItem('FPath'));
+  if (playlistData === undefined) playlistData = CardInfo;
 
   const tableData = [
     {

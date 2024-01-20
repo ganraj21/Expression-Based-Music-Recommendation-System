@@ -11,6 +11,17 @@ const NavHeader = () => {
     navigate(`/user/${UserId}`);
   };
 
+  const goForward = () => {
+    const CardInfo = JSON.parse(localStorage.getItem('FPath'));
+
+    console.log(CardInfo.title);
+    navigate(`/user/playlist/${CardInfo.title}`, {
+      state: {
+        CardInfo,
+      },
+    });
+  };
+
   return (
     <>
       <div className="navOutContainer">
@@ -21,7 +32,7 @@ const NavHeader = () => {
                 style={{ height: '30px', width: '15px', fontWeight: '100' }}
               />
             </span>
-            <span className="rightIcon">
+            <span className="rightIcon" onClick={goForward}>
               <FaAngleRight
                 style={{ height: '30px', width: '15px', fontWeight: '100' }}
               />

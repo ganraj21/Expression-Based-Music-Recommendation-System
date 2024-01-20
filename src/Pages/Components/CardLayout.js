@@ -40,6 +40,7 @@ const CardLayout = () => {
                     className="msCard"
                     key={index}
                     onClick={() => {
+                      localStorage.setItem('FPath', JSON.stringify(e));
                       navigate(`/user/playlist/${e.title}`, {
                         state: {
                           e,
