@@ -83,3 +83,25 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+/* ---------------------------  responsive ->>> */
+@media only screen and (max-width: 440px) {
+  .ph_section_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ph_container {
+    width: 90%;
+    border-radius: 6px;
+    padding: 30px 0 15px 0;
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .ph_container {
+    padding: 30px 0 7px 0;
+  }
+}

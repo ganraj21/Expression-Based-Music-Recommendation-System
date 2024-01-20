@@ -222,3 +222,32 @@
   gap: 15px;
   padding: 6px 0 6px 15px;
 }
+
+/* ----------------- responsive styles --------------- */
+@media only screen and (max-width: 440px) {
+  .sideBarContainer {
+    display: none;
+  }
+  .rightMainContainer {
+    width: 100%;
+    margin: 10px !important;
+  }
+  .msCard {
+    width: 90%;
+    height: auto;
+  }
+  .musicSectionCard {
+    padding: 10px !important;
+    grid-gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* min-width: 372px; */
+    justify-items: center;
+  }
+}
+
+@media only screen and (max-width: 388px) {
+  .musicSectionCard {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

@@ -86,7 +86,7 @@ const Phone_Auth = () => {
   }, [user]);
   return (
     <section className="phone_container bg-emerald-500 flex items-center justify-center h-screen">
-      <div>
+      <div className="ph_section_container">
         <Toaster toastOptions={{ duration: 4000 }} />
 
         {user ? (
@@ -145,7 +145,7 @@ const Phone_Auth = () => {
                     <PhoneInput country={'in'} value={ph} onChange={setPh} />
                     <button
                       onClick={onSignup}
-                      className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
+                      className="bg-emerald-600 w-full border-none flex gap-1 h-12 items-center justify-center py-2.5 text-white rounded"
                     >
                       {loading && (
                         <CgSpinner size={20} className="mt-1 animate-spin" />
