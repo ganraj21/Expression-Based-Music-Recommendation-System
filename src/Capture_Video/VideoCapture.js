@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import '../App.css';
 // import * as tf from '@tensorflow/tfjs';
-import { drawMesh } from '../utilities';
+// import { drawMesh } from '../utilities';
 import { useNavigate } from 'react-router-dom';
 // import * as blazeface from '@tensorflow-models/blazeface';
 import toast, { Toaster } from 'react-hot-toast';
@@ -12,6 +12,7 @@ const VideoCapture = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
+  const [EmotionValue, setEmotionValue] = useState(null);
 
   const captureImage = async () => {
     if (!webcamRef.current || !canvasRef.current) {
@@ -41,78 +42,68 @@ const VideoCapture = () => {
       const imageSrc = canvas.toDataURL('image/jpeg');
       console.log(imageSrc);
       // Run face detection on the captured image
-      await runFaceDetectorModel(imageSrc);
+      await handleFaceDetectionResults(imageSrc);
     } catch (error) {
       console.error('Error capturing image:', error);
     }
   };
 
-  const runFaceDetectorModel = async (imageSrc) => {
-    // const model = await blazeface.load();
+  // const runFaceDetectorModel = async (imageSrc) => {
+  //   // const model = await blazeface.load();
+
+  //   try {
+  //     // Create an HTMLImageElement from the Data URL
+  //     const image = new Image();
+  //     image.src = imageSrc;
+
+  //     // Handle face detection results
+  //     handleFaceDetectionResults(image.src);
+  //   } catch (error) {
+  //     console.error('Error running face detection:', error);
+  //   }
+  // };
+
+  const handleFaceDetectionResults = async (face) => {
     console.log('FaceDetection Model is Loaded..');
     toast.success('FaceDetection Model is Loaded..');
 
-    try {
-      // Create an HTMLImageElement from the Data URL
-      const image = new Image();
-      image.src = imageSrc;
+    // Websocket
+    var socket = new WebSocket('ws://localhost:8000');
+    var apiCall = {
+      event: 'localhost:subscribe',
+      data: {
+        image: webcamRef.current.getScreenshot(),
+      },
+    };
+    socket.onopen = () => socket.send(JSON.stringify(apiCall));
+    socket.onmessage = function (event) {
+      var pred_log = JSON.parse(event.data);
 
-      // Wait for the image to load
-      await image.decode();
+      // Log the received prediction data for debugging
+      console.log('Received prediction data:', pred_log);
 
-      // Make Detections
-      // const face = await model.estimateFaces(image);
+      // Ensure that 'emotion' property exists in pred_log
+      if (pred_log && pred_log['emotion']) {
+        // Get the emotion value
+        const emotionValue = pred_log['emotion'];
 
-      // Handle face detection results
-      // handleFaceDetectionResults(face);
-    } catch (error) {
-      console.error('Error running face detection:', error);
-    }
+        // Set the emotion_text input value
+        setEmotionValue(emotionValue);
+
+        // Update localStorage if needed
+        localStorage.setItem('User-Emotion', emotionValue);
+      } else {
+        console.error('Emotion data not found in prediction:', pred_log);
+      }
+    };
   };
-
-  // const handleFaceDetectionResults = (face) => {
-  //   // Websocket
-  //   var socket = new WebSocket('ws://localhost:8000');
-  //   var apiCall = {
-  //     event: 'localhost:subscribe',
-  //     data: {
-  //       image: webcamRef.current.getScreenshot(),
-  //     },
-  //   };
-  //   socket.onopen = () => socket.send(JSON.stringify(apiCall));
-  //   socket.onmessage = function (event) {
-  //     var pred_log = JSON.parse(event.data);
-
-  //     // Log the received prediction data for debugging
-  //     console.log('Received prediction data:', pred_log);
-
-  //     // Ensure that 'emotion' property exists in pred_log
-  //     if (pred_log && pred_log['emotion']) {
-  //       // Get the emotion value
-  //       const emotionValue = pred_log['emotion'];
-
-  //       // Set the emotion_text input value
-  //       document.getElementById('emotion_text').value = emotionValue;
-
-  //       // Update localStorage if needed
-  //       localStorage.setItem('User-Emotion', emotionValue);
-
-  //       // Get canvas context
-  //       const ctx = canvasRef.current.getContext('2d');
-  //       requestAnimationFrame(() => {
-  //         drawMesh(face, pred_log, ctx);
-  //       });
-  //     } else {
-  //       console.error('Emotion data not found in prediction:', pred_log);
-  //     }
-  //   };
-  // };
 
   const removeImage = () => {
     // Clear the canvas
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    setEmotionValue('');
   };
 
   // useEffect(() => {
@@ -146,7 +137,11 @@ const VideoCapture = () => {
             </div>
             <div className="operationsBtn">
               <div className="InputDectectionDiv">
-                <input id="emotion_text" name="emotion_text" value="Neutral" />
+                <input
+                  id="emotion_text"
+                  name="emotion_text"
+                  value={EmotionValue}
+                />
               </div>
 
               <div className="captureImgDiv">

@@ -23,6 +23,11 @@
   width: 100%;
   height: 40px;
 }
+.mainWebCam,
+.operationSettingComponent {
+  border-radius: 10px;
+}
+
 /* ------------------------- camera container styles ------------------------ */
 .front_page_container {
   background: #0f0f0f;
@@ -34,7 +39,9 @@
 
 .cameraContainer {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
   /* background-color: #2e4045; */
@@ -45,7 +52,7 @@
   justify-content: center;
   align-items: center;
   right: 0;
-  background-color: #183d3d;
+  background-color: #4326006e;
 }
 
 #webcam-preview {
@@ -63,11 +70,13 @@ canvas {
   gap: 12px;
 }
 .operationSettingComponent {
-  width: 20%;
+  width: 25%;
+  max-width: 400px;
   height: 100%;
+  overflow: scroll;
 }
 .cameraSettingComponent {
-  width: 80%;
+  width: 75%;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -82,14 +91,11 @@ canvas {
   width: 100%;
   align-content: center;
   justify-content: center;
-  align-items: center;
   height: 100%;
-  background: #341d4ab3;
-  border-radius: 10px;
+  background: #1e03388a;
 }
 
 .InputDectectionDiv input {
-  /* padding-left: 15px; */
   background: none;
   color: #fff;
   border: 1px solid;
