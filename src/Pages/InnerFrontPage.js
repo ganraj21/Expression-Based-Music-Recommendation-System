@@ -15,7 +15,7 @@ const InnerFrontPage = () => {
           <div className="rightMainContainer">
             <NavHeader />
             <CardLayout />
-            {/* <PlaylistLayout /> */}
+            {/* <PlaylistLayout /> */} // need to remove this component
           </div>
         </div>
       </div>
