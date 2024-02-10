@@ -69,6 +69,7 @@ const Phone_Auth = () => {
         setUser(res.user);
         setLoading(false);
         localStorage.setItem('UserId', res.user.uid);
+        navigate(`/user/${res.user.uid}`);
       })
       .catch((err) => {
         setLoading(false);
@@ -76,14 +77,17 @@ const Phone_Auth = () => {
       });
   }
 
-  useEffect(() => {
-    const UserId = localStorage.getItem('UserId');
-    if (UserId) {
-      setUser(localStorage.getItem('UserId'));
-    }
+  // useEffect(() => {
+  //   const UserId = localStorage.getItem('UserId');
+  //   if (UserId) {
+  //     setUser(UserId);
+  //   }
 
-    if (user != null) navigate(`/user/${UserId}`);
-  }, [user]);
+  //   setTimeout(() => {
+  //     console.log(UserId);
+  //     if (UserId) navigate(`/user/${UserId}`);
+  //   }, 2000);
+  // }, [user]);
   return (
     <section className="phone_container bg-emerald-500 flex items-center justify-center h-screen">
       <div className="ph_section_container">

@@ -5,6 +5,7 @@ import NavHeader from './Components/NavHeader';
 import CardLayout from './Components/CardLayout';
 import PlaylistLayout from './Components/Playlist/PlaylistLayout';
 import SideBarSection from './Components/SideBarSection';
+// import PlayerOne from './Components/Components/PlayerInterface/Player';
 
 const InnerFrontPage = () => {
   return (
@@ -15,7 +16,8 @@ const InnerFrontPage = () => {
           <div className="rightMainContainer">
             <NavHeader />
             <CardLayout />
-            {/* <PlaylistLayout /> */} // need to remove this component
+            {/* <PlaylistLayout /> */}
+            {/* <PlayerOne /> */}
           </div>
         </div>
       </div>

@@ -46,7 +46,11 @@
 .libraryPlayListContainer,
 .libraryplcontainer,
 .libraryInfo,
-.sortActions {
+.sortActions,
+.userContaineSection,
+.userContaineSection,
+.UserActionContainer,
+.userContaineSection span {
   display: flex;
 }
 
@@ -64,7 +68,8 @@
 .musicLibrary,
 .showMore,
 .createNewPlaylist,
-.libraryplcontainer {
+.libraryplcontainer,
+.userContaineSection span {
   cursor: pointer;
 }
 .navHeader,
@@ -170,6 +175,50 @@
   font-weight: 700;
   padding: 9px 18px;
 }
+
+.UserActionContainer {
+  width: 100%;
+  position: absolute;
+  z-index: 30;
+  background: black;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  animation: wipe-enter 1s 1;
+  animation-name: wipe-enter;
+  animation-duration: 1s;
+  padding: 20px 0 20px 0;
+}
+@keyframes wipe-enter {
+  0% {
+    transform: scale(0, 0.025);
+  }
+  50% {
+    transform: scale(1, 0.025);
+  }
+}
+.userContaineSection {
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.userContaineSection span {
+  height: 48px;
+  width: 90%;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background: #1d0534;
+  border-radius: 9px;
+}
+
+.userContaineSection span:active {
+  transform: scale(0.98);
+  user-select: none;
+}
+
 /* ------------------------ sideBarContainer --------------------- */
 .sidebarHome,
 .sidebarSearch {
@@ -223,6 +272,18 @@
 }
 
 /* ----------------- responsive styles --------------- */
+@media only screen and (min-width: 440px) {
+  .UserActionContainer {
+    width: 200px !important;
+    right: 0;
+    padding: 20px 15px !important;
+    border-radius: 6px;
+  }
+  .userContaineSection span {
+    height: 36px;
+  }
+}
+
 @media only screen and (max-width: 440px) {
   .sideBarContainer {
     display: none;

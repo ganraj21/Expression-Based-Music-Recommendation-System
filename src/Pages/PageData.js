@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 const PageData = [
   {
     mainTitle: 'Good',
@@ -104,6 +105,20 @@ const PageData = [
               'https://i.scdn.co/image/ab67616d00004851e452a6e11147f3e56aee6f5b',
             ref_path: '',
             description: 'Anirudh Ravichander, Arijit Singh, Shilpa Rao',
+            audio: 'https://mp3.chillhop.com/serve.php/?mp3=21648',
+          },
+          {
+            // id: uuidv4(),
+            id: 2,
+            title: 'Glaciar',
+            albumName: 'Juan Rios',
+            time: '4.26',
+            coverUrl:
+              'https://chillhop.com/wp-content/uploads/2021/07/4163ebb931e06d4ee8eb184295c0246d4a5055f7-1024x1024.jpg',
+            work_img:
+              'https://chillhop.com/wp-content/uploads/2021/07/4163ebb931e06d4ee8eb184295c0246d4a5055f7-150x150.jpg',
+            audio: 'https://mp3.chillhop.com/serve.php/?mp3=21648',
+            palette: 'coral',
           },
         ],
       },

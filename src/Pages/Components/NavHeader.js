@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { FaUser, FaRegBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import UserIconActions from './UserIconActions';
 
 const NavHeader = () => {
   const navigate = useNavigate();
+  const [userActions, setUserAction] = useState(0);
 
   const goBackward = () => {
     const UserId = localStorage.getItem('UserId');
@@ -20,6 +22,11 @@ const NavHeader = () => {
         CardInfo,
       },
     });
+  };
+
+  const showUserActions = () => {
+    console.log('Clicked on User Profile');
+    setUserAction(!userActions);
   };
 
   return (
@@ -43,11 +50,12 @@ const NavHeader = () => {
             <span className="notificationBell">
               <FaRegBell style={{ height: '21px', width: '15px' }} />
             </span>
-            <span className="userProfile">
+            <span className="userProfile" onClick={showUserActions}>
               <FaUser style={{ height: '21px', width: '15px' }} />
             </span>
           </div>
         </div>
+        {userActions ? <UserIconActions /> : ''}
       </div>
     </>
   );
