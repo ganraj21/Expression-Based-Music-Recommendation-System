@@ -55,6 +55,7 @@ const Phone_Auth = () => {
         toast.success('OTP sended Successfully !');
       })
       .catch((error) => {
+        toast.error('Auth/too-many-requests');
         console.log(error);
         setLoading(false);
       });
@@ -77,17 +78,12 @@ const Phone_Auth = () => {
       });
   }
 
-  // useEffect(() => {
-  //   const UserId = localStorage.getItem('UserId');
-  //   if (UserId) {
-  //     setUser(UserId);
-  //   }
-
-  //   setTimeout(() => {
-  //     console.log(UserId);
-  //     if (UserId) navigate(`/user/${UserId}`);
-  //   }, 2000);
-  // }, [user]);
+  useEffect(() => {
+    const UserId = localStorage.getItem('UserId');
+    if (!UserId) {
+      navigate(`/`);
+    }
+  }, [user]);
   return (
     <section className="phone_container bg-emerald-500 flex items-center justify-center h-screen">
       <div className="ph_section_container">

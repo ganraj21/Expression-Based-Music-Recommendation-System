@@ -1,0 +1,60 @@
+/* // ------------ global styles ------- */
+.player__seek-controls,
+.app__wrapper,
+.player__control,
+.player {
+  display: flex;
+}
+
+.player__seek-controls,
+.app__wrapper {
+  gap: 20px;
+}
+
+/* ----------------------------- */
+
+.app__wrapper {
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background: #060c23f5;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.player {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  padding: 12px;
+}
+
+.player__seek-bar--wrapper input {
+  width: 350px;
+}
+
+.player__control {
+  padding: 9px;
+  gap: 10px;
+  font-size: 21px;
+}
+
+@media only screen and (max-width: 780px) {
+  .song-info {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .player,
+  .player__seek-controls,
+  .player__seek-bar--wrapper input {
+    width: 100%;
+  }
+  .player__seek-bar--wrapper {
+    width: 80%;
+  }
+}

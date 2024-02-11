@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PhoneAuth from './Authentication/Phone_Auth';
-import InnerFrontPage from './Pages/InnerFrontPage';
 import VideoCapture from './Capture_Video/VideoCapture';
-import PlayListContainer from './Pages/Components/Playlist/PlayListContainer';
+import PlayListContainer from './Pages/Components/InnerTablePlaylist/PlayListContainer';
+import InnerFrontPage from './Pages/Components/FrontInterface/InnerFrontPage';
 
 const App = () => {
   return (

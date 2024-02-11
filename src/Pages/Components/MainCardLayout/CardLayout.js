@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PageData from '../PageData';
+import PageData from '../../PageData';
 import { useNavigate } from 'react-router-dom';
 
 const CardLayout = () => {

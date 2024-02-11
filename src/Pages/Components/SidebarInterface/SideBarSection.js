@@ -35,7 +35,7 @@ const SideBarSection = () => {
           <span
             className="sidebarHome"
             onClick={() => {
-              navigate('/user');
+              // navigate('/user');
             }}
           >
             <GoHome style={{ height: '30px', width: '27px' }} /> Home
