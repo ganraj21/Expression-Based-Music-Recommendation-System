@@ -41,11 +41,15 @@ const CardLayout = () => {
                     key={index}
                     onClick={() => {
                       localStorage.setItem('FPath', JSON.stringify(e));
-                      navigate(`/user/playlist/${e.title}`, {
-                        state: {
-                          e,
-                        },
-                      });
+                      console.log(e);
+                      if (e.id === 1) {
+                        navigate(`/user/playlist/${e.title}`, {
+                          state: {
+                            e,
+                          },
+                        });
+                      }
+                      navigate(`/user/capture`);
                     }}
                   >
                     <img src={e.work_img} alt="music section" />

@@ -4,7 +4,7 @@ import NavHeader from '../HeaderNavigation/NavHeader';
 import CardLayout from '../MainCardLayout/CardLayout';
 import SideBarSection from '../SidebarInterface/SideBarSection';
 import { useNavigate } from 'react-router-dom';
-import NewPlayer from '../Player/NewPlayer';
+// import NewPlayer from '../Player/NewPlayer';
 
 const InnerFrontPage = () => {
   const navigate = useNavigate();
@@ -17,16 +17,16 @@ const InnerFrontPage = () => {
   return (
     <>
       <div className="InnerPageSection">
-        <div className="pageContainer">
-          <div className="PCInnerContainer">
-            <SideBarSection />
-            <div className="rightMainContainer">
-              <NavHeader />
-              <CardLayout />
-            </div>
+        {/* <div className="pageContainer"> */}
+        <div className="PCInnerContainer">
+          <SideBarSection />
+          <div className="rightMainContainer">
+            <NavHeader />
+            <CardLayout />
           </div>
         </div>
-        <NewPlayer />
+        {/* </div> */}
+        {/* <NewPlayer /> */}
       </div>
     </>
   );
