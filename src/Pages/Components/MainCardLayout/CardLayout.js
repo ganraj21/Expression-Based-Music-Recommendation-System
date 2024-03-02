@@ -42,7 +42,7 @@ const CardLayout = () => {
                     onClick={() => {
                       localStorage.setItem('FPath', JSON.stringify(e));
                       console.log(e);
-                      if (e.id === 1) {
+                      if (e.id !== 1) {
                         navigate(`/user/playlist/${e.title}`, {
                           state: {
                             e,

@@ -17,7 +17,6 @@ const InnerFrontPage = () => {
   return (
     <>
       <div className="InnerPageSection">
-        {/* <div className="pageContainer"> */}
         <div className="PCInnerContainer">
           <SideBarSection />
           <div className="rightMainContainer">
@@ -25,8 +24,6 @@ const InnerFrontPage = () => {
             <CardLayout />
           </div>
         </div>
-        {/* </div> */}
-        {/* <NewPlayer /> */}
       </div>
     </>
   );
