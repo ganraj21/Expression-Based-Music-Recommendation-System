@@ -92,6 +92,15 @@ const VideoCapture = () => {
 
         // Update localStorage if needed
         localStorage.setItem('User-Emotion', emotionValue);
+        // if (emotionValue !== 'null') {
+        const e = JSON.parse(localStorage.getItem('FPath'));
+        console.log(e);
+        navigate(`/user/playlist/${e.title}`, {
+          state: {
+            e,
+          },
+        });
+        // }
       } else {
         console.error('Emotion data not found in prediction:', pred_log);
       }
