@@ -18,13 +18,15 @@ const InnerFrontPage = () => {
     <>
       <div className="InnerPageSection">
         <div className="pageContainer">
-          <SideBarSection />
-          <div className="rightMainContainer">
-            <NavHeader />
-            <CardLayout />
+          <div className="PCInnerContainer">
+            <SideBarSection />
+            <div className="rightMainContainer">
+              <NavHeader />
+              <CardLayout />
+            </div>
           </div>
-          <NewPlayer />
         </div>
+        <NewPlayer />
       </div>
     </>
   );

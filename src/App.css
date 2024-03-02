@@ -20,13 +20,20 @@
 .ph_container {
   width: 420px;
   height: 500px;
-  background: #29292957;
+  background: #6262623d;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(9px);
 }
 .phone_container {
-  background-image: linear-gradient(
+  background-image: url('./Images//login_bg.jpg');
+  border-image: fill 0 linear-gradient(#0003, #0004);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  /* background-image: linear-gradient(
     to right,
     #b8cbb8 0%,
     #b8cbb8 0%,
@@ -34,7 +41,7 @@
     #cf6cc9 33%,
     #ee609c 66%,
     #ee609c 100%
-  );
+  ); */
 }
 
 .App-header {

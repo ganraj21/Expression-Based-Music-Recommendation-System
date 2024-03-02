@@ -49,35 +49,43 @@ const NewPlayer = () => {
   };
 
   return (
-    <div
-      className={`app__wrapper ${
-        uiState.darkMode ? 'dark-mode' : 'light-mode'
-      }`}
-      style={{
-        backdropFilter: `${
-          uiState.libraryShown || uiState.aboutShown ? 'none' : 'blur(1.5rem)'
-        }`,
-        WebkitBackdropFilter: `${
-          uiState.libraryShown || uiState.aboutShown ? 'none' : 'blur(1.5rem)'
-        }`,
-      }}
-    >
-      <SongInfo songState={songState} />
-      <Player
-        uiState={uiState}
-        setUiState={setUiState}
-        audioRef={audioRef}
-        songState={songState}
-        setSongState={setSongState}
-      />
-      <audio
-        ref={audioRef}
-        src={songState.currentSong[0].audio}
-        onTimeUpdate={songInfoHandler}
-        onLoadedMetadata={songInfoHandler}
-        onEnded={songEndHandler}
-      ></audio>
-    </div>
+    <>
+      <div className="playerWrapperClass">
+        <div
+          className={`app__wrapper ${
+            uiState.darkMode ? 'dark-mode' : 'light-mode'
+          }`}
+          style={{
+            backdropFilter: `${
+              uiState.libraryShown || uiState.aboutShown
+                ? 'none'
+                : 'blur(1.5rem)'
+            }`,
+            WebkitBackdropFilter: `${
+              uiState.libraryShown || uiState.aboutShown
+                ? 'none'
+                : 'blur(1.5rem)'
+            }`,
+          }}
+        >
+          <SongInfo songState={songState} />
+          <Player
+            uiState={uiState}
+            setUiState={setUiState}
+            audioRef={audioRef}
+            songState={songState}
+            setSongState={setSongState}
+          />
+          <audio
+            ref={audioRef}
+            src={songState.currentSong[0].audio}
+            onTimeUpdate={songInfoHandler}
+            onLoadedMetadata={songInfoHandler}
+            onEnded={songEndHandler}
+          ></audio>
+        </div>
+      </div>
+    </>
   );
 };
 
