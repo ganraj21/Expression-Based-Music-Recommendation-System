@@ -67,6 +67,15 @@ const VideoCapture = () => {
     console.log('FaceDetection Model is Loaded..');
     toast.success('FaceDetection Model is Loaded..');
 
+    // if (emotionValue !== 'null') {
+    const e = JSON.parse(localStorage.getItem('FPath'));
+    console.log(e);
+    navigate(`/user/playlist/${e.title}`, {
+      state: {
+        e,
+      },
+    });
+    // }
     // Websocket
     var socket = new WebSocket('ws://localhost:8000');
     var apiCall = {
@@ -92,15 +101,6 @@ const VideoCapture = () => {
 
         // Update localStorage if needed
         localStorage.setItem('User-Emotion', emotionValue);
-        // if (emotionValue !== 'null') {
-        const e = JSON.parse(localStorage.getItem('FPath'));
-        console.log(e);
-        navigate(`/user/playlist/${e.title}`, {
-          state: {
-            e,
-          },
-        });
-        // }
       } else {
         console.error('Emotion data not found in prediction:', pred_log);
       }
