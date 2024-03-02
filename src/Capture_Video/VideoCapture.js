@@ -68,13 +68,17 @@ const VideoCapture = () => {
     toast.success('FaceDetection Model is Loaded..');
 
     // if (emotionValue !== 'null') {
-    const e = JSON.parse(localStorage.getItem('FPath'));
-    console.log(e);
-    navigate(`/user/playlist/${e.title}`, {
-      state: {
-        e,
-      },
-    });
+
+    setTimeout(() => {
+      const e = JSON.parse(localStorage.getItem('FPath'));
+      console.log(e);
+      navigate(`/user/playlist/${e.title}`, {
+        state: {
+          e,
+        },
+      });
+    }, 5000);
+
     // }
     // Websocket
     var socket = new WebSocket('ws://localhost:8000');
