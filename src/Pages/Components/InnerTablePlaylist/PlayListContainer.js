@@ -20,8 +20,8 @@ const PlayListContainer = () => {
             <NavHeader />
             <PlaylistLayout playlistData={e} />
           </div>
+          <NewPlayer />
         </div>
-        <NewPlayer />
       </div>
     </>
   );

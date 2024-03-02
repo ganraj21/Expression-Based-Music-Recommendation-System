@@ -101,3 +101,14 @@ canvas {
   border: 1px solid;
   padding: 1px 40px;
 }
+
+@media only screen and (max-width: 600px) {
+  .cameraContainer {
+    flex-direction: column;
+  }
+  .cameraSettingComponent,
+  .operationSettingComponent {
+    width: 100%;
+    max-width: none;
+  }
+}

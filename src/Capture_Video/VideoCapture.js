@@ -31,7 +31,7 @@ const VideoCapture = () => {
     try {
       // Set smaller dimensions for the captured image
       const smallWidth = 160;
-      const smallHeight = 120;
+      const smallHeight = 220;
 
       // Capture a single frame from the webcam
       canvas.width = smallWidth;
