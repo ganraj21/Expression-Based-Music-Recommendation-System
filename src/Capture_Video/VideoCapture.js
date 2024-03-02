@@ -77,7 +77,7 @@ const VideoCapture = () => {
           e,
         },
       });
-    }, 5000);
+    }, 4000);
 
     // }
     // Websocket
