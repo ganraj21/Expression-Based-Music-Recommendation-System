@@ -1,6 +1,7 @@
 /* ------------------------ global styles ------------------------- */
 
 .respectiveMusicInfo,
+.pageContainer,
 .cardInfo,
 .operationSection,
 .listIcon,
@@ -39,6 +40,11 @@
 }
 /* -------------------------------- card image ------------------------------ */
 
+.pageContainer {
+  gap: 10px;
+  width: 100%;
+  height: 100vh;
+}
 .cardImage {
   width: 175px;
   height: 175px;

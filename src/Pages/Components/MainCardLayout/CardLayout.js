@@ -48,6 +48,7 @@ const CardLayout = () => {
                             e,
                           },
                         });
+                        return;
                       }
                       navigate(`/user/capture`);
                     }}
