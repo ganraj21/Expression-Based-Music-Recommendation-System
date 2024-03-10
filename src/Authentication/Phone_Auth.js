@@ -82,6 +82,8 @@ const Phone_Auth = () => {
     const UserId = localStorage.getItem('UserId');
     if (!UserId) {
       navigate(`/`);
+    } else if (UserId) {
+      navigate(`/user/${UserId}`);
     }
   }, [user]);
   return (
