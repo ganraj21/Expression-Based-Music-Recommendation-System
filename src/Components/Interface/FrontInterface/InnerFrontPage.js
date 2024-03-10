@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './InnerFrontPage.css';
 import { useNavigate } from 'react-router-dom';
-import NavHeader from '../HeaderNavigation/NavHeader';
+import NavHeader from '../../HeaderNavigation/NavHeader';
 import CardLayout from '../../Interface/MainCardLayout/CardLayout';
-import SideBarSection from '../SidebarInterface/SideBarSection';
+import SideBarSection from '../../SidebarInterface/SideBarSection';
 
 const InnerFrontPage = () => {
   const navigate = useNavigate();

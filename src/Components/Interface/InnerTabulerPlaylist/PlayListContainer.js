@@ -2,8 +2,8 @@ import React from 'react';
 import PlaylistLayout from './PlaylistLayout';
 import { useLocation } from 'react-router-dom';
 import NewPlayer from '../../Player/NewPlayer';
-import NavHeader from '../HeaderNavigation/NavHeader';
-import SideBarSection from '../SidebarInterface/SideBarSection';
+import SideBarSection from '../../SidebarInterface/SideBarSection';
+import NavHeader from '../../HeaderNavigation/NavHeader';
 
 const PlayListContainer = () => {
   const location = useLocation();
