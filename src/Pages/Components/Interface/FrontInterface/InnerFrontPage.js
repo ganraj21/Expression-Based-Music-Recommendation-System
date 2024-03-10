@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import './InnerFrontPage.css';
-import NavHeader from '../HeaderNavigation/NavHeader';
-import CardLayout from '../MainCardLayout/CardLayout';
-import SideBarSection from '../SidebarInterface/SideBarSection';
 import { useNavigate } from 'react-router-dom';
-// import NewPlayer from '../Player/NewPlayer';
+import NavHeader from '../HeaderNavigation/NavHeader';
+import CardLayout from '../../Interface/MainCardLayout/CardLayout';
+import SideBarSection from '../SidebarInterface/SideBarSection';
 
 const InnerFrontPage = () => {
   const navigate = useNavigate();

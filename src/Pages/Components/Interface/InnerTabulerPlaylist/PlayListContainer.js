@@ -1,11 +1,10 @@
 import React from 'react';
-import SideBarSection from '../SidebarInterface/SideBarSection';
-import NavHeader from '../HeaderNavigation/NavHeader';
 import PlaylistLayout from './PlaylistLayout';
 import { useLocation } from 'react-router-dom';
-import NewPlayer from '../Player/NewPlayer';
-// import ReactJkMusicPlayer from 'react-jinke-music-player'
-// import 'react-jinke-music-player/assets/index.css'
+import NewPlayer from '../../Player/NewPlayer';
+import NavHeader from '../HeaderNavigation/NavHeader';
+import SideBarSection from '../SidebarInterface/SideBarSection';
+
 const PlayListContainer = () => {
   const location = useLocation();
   const { state } = location;

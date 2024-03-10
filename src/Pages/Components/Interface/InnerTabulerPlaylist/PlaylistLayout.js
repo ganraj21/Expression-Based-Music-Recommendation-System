@@ -3,9 +3,9 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
 import { FaHeart } from 'react-icons/fa';
-// import ColorThief from 'color-thief';
 import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
+
 const PlaylistLayout = ({ playlistData }) => {
   const [playbtn, isPlayBtn] = useState(0);
   const [likebtn, isLikeBtn] = useState(0);

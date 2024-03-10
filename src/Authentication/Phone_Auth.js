@@ -55,7 +55,7 @@ const Phone_Auth = () => {
         toast.success('OTP sended Successfully !');
       })
       .catch((error) => {
-        toast.error('Auth/too-many-requests');
+        // toast.error('Auth/too-many-requests');
         console.log(error);
         setLoading(false);
       });
