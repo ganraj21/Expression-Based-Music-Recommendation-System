@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import PageData from '../../PageData';
 import { useNavigate } from 'react-router-dom';
 
 const CardLayout = () => {
   const [greeting, setGreeting] = useState('');
+  const [cardData, setCardData] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
+    fetch('https://emotion-based-mrs-data.onrender.com/CardLayout')
+      .then((response) => response.json())
+      .then((data) => {
+        setCardData(data);
+        console.log(data);
+      })
+      .catch((error) => console.error(error));
+
     const updateGreeting = () => {
       const currentHour = new Date().getHours();
       console.log(currentHour);
@@ -27,7 +35,7 @@ const CardLayout = () => {
 
   return (
     <>
-      {PageData.map((a, id) => {
+      {cardData.cardLayout?.map((a, id) => {
         return (
           <>
             <div className="dayGreeting" key={id}>

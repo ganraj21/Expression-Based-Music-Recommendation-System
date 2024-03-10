@@ -25,7 +25,7 @@ const NewPlayer = () => {
   const audioRef = useRef(null);
 
   // Setting the background as the cover artwork
-  document.body.style.backgroundImage = `url('${songState.currentSong[0].coverUrl}')`;
+  // document.body.style.backgroundImage = `url('${songState.currentSong[0].coverUrl}')`;
 
   const songEndHandler = async () => {
     let currentIndex = songData.findIndex(
