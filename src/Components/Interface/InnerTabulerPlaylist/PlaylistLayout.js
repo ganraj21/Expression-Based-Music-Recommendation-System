@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
@@ -9,70 +9,10 @@ import './PlaylistLayout.css';
 const PlaylistLayout = ({ playlistData }) => {
   const [playbtn, isPlayBtn] = useState(0);
   const [likebtn, isLikeBtn] = useState(0);
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
-  const imageRef = useRef();
-
-  // console.log(playlistData);  check point
-
-  // useEffect(() => {
-  //   // Ensure the image is loaded before extracting the color
-  //   imageRef.current.onload = () => {
-  //     const colorThief = new ColorThief();
-  //     const [r, g, b] = colorThief.getColor(imageRef.current);
-  //     setBackgroundColor(`rgb(${r}, ${g}, ${b})`);
-  //   };
-  // }, [playlistData]);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (playlistData === undefined) playlistData = CardInfo;
 
-  const tableData = [
-    {
-      number: 1,
-      title: {
-        imageUri:
-          'https://i.scdn.co/image/ab67616d00004851e810a88d506b30bdc0935247',
-        mainTitle: 'Raabta',
-        subTitle: 'Pritam, Arijit Singh',
-      },
-      album: 'Agent Vinod',
-      time: '3:30',
-    },
-    {
-      number: 2,
-      title: {
-        imageUri:
-          'https://i.scdn.co/image/ab67616d000048515f3ede47954a93aa03efe5f9',
-        mainTitle: 'Arjan Vailly',
-        subTitle: 'Manan Bhardwaj, Bhupinder Babbal',
-      },
-      album: 'ANIMAL',
-      time: '4:15',
-    },
-    {
-      number: 3,
-      title: {
-        imageUri:
-          'https://i.scdn.co/image/ab67616d00004851471b7e4f9c2fcf92d4f1e5c1',
-        mainTitle: 'Sapna Jahan (From "Brothers")',
-        subTitle: 'Ajay-Atul,Sonu Nigam,Neeti Mohan',
-      },
-      album: 'Sapna Jahan (From "Brothers")',
-      time: '2:50',
-    },
-    {
-      number: 4,
-      title: {
-        imageUri:
-          'https://i.scdn.co/image/ab67616d000048514a60872ae145776164540a7f',
-        mainTitle: 'Heeriye (feat. Arijit Singh)',
-        subTitle: 'Jasleen Royal,Arijit Singh,Harrykahanhai',
-      },
-      album: 'Heeriye (feat. Arijit Singh)',
-      time: '4:30',
-    },
-    // Add more data as needed
-  ];
   return (
     <>
       <div className="listLayoutContainer">
