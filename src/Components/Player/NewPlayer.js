@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import SongInfo from './Component/Main/SongInfo';
 import Player from './Component/PlayerInterface/Player';
-import songData from './Data/SongData';
+import { MusicContext } from '../../MusicContext';
 
 const NewPlayer = () => {
-  // UI Components State
+  const { songData, playerController, songPlay } = useContext(MusicContext);
+
   const [uiState, setUiState] = useState({
     aboutShown: false,
     libraryShown: false,
@@ -13,19 +14,15 @@ const NewPlayer = () => {
     songPlaying: false,
     seekWidth: 0,
   });
-  // Song States
+
   const [songState, setSongState] = useState({
-    currentSong: [songData[0]],
+    currentSong: songData.length > 0 ? [songData[0]] : [], // Ensure songData has at least one element
     isPlaying: false,
     elapsed: 0,
     duration: 0,
   });
 
-  // Reference for the audio
   const audioRef = useRef(null);
-
-  // Setting the background as the cover artwork
-  // document.body.style.backgroundImage = `url('${songState.currentSong[0].coverUrl}')`;
 
   const songEndHandler = async () => {
     let currentIndex = songData.findIndex(
@@ -76,13 +73,16 @@ const NewPlayer = () => {
             songState={songState}
             setSongState={setSongState}
           />
-          <audio
-            ref={audioRef}
-            src={songState.currentSong[0].audio}
-            onTimeUpdate={songInfoHandler}
-            onLoadedMetadata={songInfoHandler}
-            onEnded={songEndHandler}
-          ></audio>
+          {songState.currentSong.length > 0 &&
+            songState.currentSong[0].audio && ( // Ensure songData is available and currentSong[0] has the audio property
+              <audio
+                ref={audioRef}
+                src={songState.currentSong[0].audio}
+                onTimeUpdate={songInfoHandler}
+                onLoadedMetadata={songInfoHandler}
+                onEnded={songEndHandler}
+              ></audio>
+            )}
         </div>
       </div>
     </>

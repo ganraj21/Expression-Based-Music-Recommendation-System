@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { RiPlayFill } from 'react-icons/ri';
 import { IoIosPause } from 'react-icons/io';
+import { MusicContext } from '../../../../MusicContext';
 
 function PlayerPlayButton({
   uiState,
@@ -9,20 +10,22 @@ function PlayerPlayButton({
   audioRef,
   setSongState,
 }) {
-  const currentPalette = songState.currentSong[0].palette;
+  const { playerController, songPlay } = useContext(MusicContext);
+
   const playPauseHandler = () => {
+    playerController();
     setUiState({ ...uiState, songPlaying: !uiState.songPlaying });
     if (uiState.songPlaying === true) {
       audioRef.current.pause();
-      setSongState({ ...songState, isPlaying: false });
+      setSongState({ ...songState, isPlaying: songPlay });
     } else {
       audioRef.current.play();
-      setSongState({ ...songState, isPlaying: true });
+      setSongState({ ...songState, isPlaying: songPlay });
     }
   };
 
   const PlayPauseButton = () => {
-    if (uiState.songPlaying) {
+    if (uiState.songPlaying || songPlay) {
       return (
         <IoIosPause className="player__control-icon player__control-icon--white" />
       );
