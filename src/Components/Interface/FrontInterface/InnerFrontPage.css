@@ -272,6 +272,11 @@
   gap: 15px;
   padding: 6px 0 6px 15px;
 }
+.sortActions span {
+  background: #2e2e2e;
+  padding: 3px 9px;
+  border-radius: 6px;
+}
 
 /* ----------------- responsive styles --------------- */
 @media only screen and (min-width: 440px) {

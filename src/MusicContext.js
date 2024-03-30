@@ -6,8 +6,16 @@ const MusicProvider = ({ children }) => {
   const [cardData, setCardData] = useState([]);
   const [songData, setSongData] = useState([]);
   const [songPlay, setSongPlaying] = useState(0);
+  const [userId, setUserId] = useState('');
 
   const uri = 'https://emotion-based-mrs-data.onrender.com';
+
+  // --------------------------------- User Id --------------->
+  useEffect(() => {
+    const id = localStorage.getItem('UserId');
+    setUserId(id);
+  }, []);
+
   useEffect(() => {
     const updateGreeting = () => {
       const currentHour = new Date().getHours();
@@ -64,7 +72,14 @@ const MusicProvider = ({ children }) => {
 
   return (
     <MusicContext.Provider
-      value={{ greeting, cardData, songData, playerController, songPlay }}
+      value={{
+        userId,
+        greeting,
+        cardData,
+        songData,
+        playerController,
+        songPlay,
+      }}
     >
       {children}
     </MusicContext.Provider>

@@ -52,7 +52,7 @@
   justify-content: center;
   align-items: center;
   right: 0;
-  background-color: #4326006e;
+  background-color: #212121;
 }
 
 #webcam-preview {
@@ -92,7 +92,7 @@ canvas {
   align-content: center;
   justify-content: center;
   height: 100%;
-  background: #1e03388a;
+  background: #212121;
 }
 
 .InputDectectionDiv input {

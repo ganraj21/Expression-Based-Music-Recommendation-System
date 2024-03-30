@@ -22,7 +22,7 @@ const CardLayout = () => {
                     key={index}
                     onClick={() => {
                       console.log(e);
-                      if (e.id !== 1) {
+                      if (e.title !== 'AI Generated Playlist') {
                         localStorage.setItem('FPath', JSON.stringify(e));
                         navigate(`/user/playlist/${e.title}`, {
                           state: {

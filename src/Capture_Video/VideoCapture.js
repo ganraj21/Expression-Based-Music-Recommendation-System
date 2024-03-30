@@ -1,18 +1,17 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import '../App.css';
-// import * as tf from '@tensorflow/tfjs';
-// import { drawMesh } from '../utilities';
 import { useNavigate } from 'react-router-dom';
-// import * as blazeface from '@tensorflow-models/blazeface';
 import toast, { Toaster } from 'react-hot-toast';
 import Webcam from 'react-webcam';
 import './VideoCapture.css';
+import { MusicContext } from '../MusicContext';
 
 const VideoCapture = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const navigate = useNavigate();
   const [EmotionValue, setEmotionValue] = useState(null);
+  const { userId } = useContext(MusicContext);
 
   const captureImage = async () => {
     if (!webcamRef.current || !canvasRef.current) {
@@ -48,46 +47,31 @@ const VideoCapture = () => {
     }
   };
 
-  // const runFaceDetectorModel = async (imageSrc) => {
-  //   // const model = await blazeface.load();
-
-  //   try {
-  //     // Create an HTMLImageElement from the Data URL
-  //     const image = new Image();
-  //     image.src = imageSrc;
-
-  //     // Handle face detection results
-  //     handleFaceDetectionResults(image.src);
-  //   } catch (error) {
-  //     console.error('Error running face detection:', error);
-  //   }
-  // };
-
   const handleFaceDetectionResults = async (face) => {
     console.log('FaceDetection Model is Loaded..');
     toast.success('FaceDetection Model is Loaded..');
 
-    // if (emotionValue !== 'null') {
-
-    setTimeout(() => {
-      const e = JSON.parse(localStorage.getItem('FPath'));
-      console.log(e);
-      navigate(`/user/playlist/${e.title}`, {
-        state: {
-          e,
-        },
-      });
-    }, 4000);
+    // setTimeout(() => {
+    //   const e = JSON.parse(localStorage.getItem('FPath'));
+    //   console.log(e);
+    //   navigate(`/user/playlist/${e.title}`, {
+    //     state: {
+    //       e,
+    //     },
+    //   });
+    // }, 4000);
 
     // }
     // Websocket
     var socket = new WebSocket('ws://localhost:8000');
+
     var apiCall = {
       event: 'localhost:subscribe',
       data: {
         image: webcamRef.current.getScreenshot(),
       },
     };
+
     socket.onopen = () => socket.send(JSON.stringify(apiCall));
     socket.onmessage = function (event) {
       var pred_log = JSON.parse(event.data);
@@ -102,12 +86,21 @@ const VideoCapture = () => {
 
         // Set the emotion_text input value
         setEmotionValue(emotionValue);
+        toast.success(emotionValue);
 
         // Update localStorage if needed
         localStorage.setItem('User-Emotion', emotionValue);
       } else {
         console.error('Emotion data not found in prediction:', pred_log);
       }
+    };
+
+    socket.onerror = function (error) {
+      console.error('WebSocket Error:', error);
+      setTimeout(() => {
+        toast.error('Socket Connection Error. Please try again later.');
+        navigate(`/user/${userId}`);
+      }, 2000);
     };
   };
 
@@ -119,24 +112,9 @@ const VideoCapture = () => {
     setEmotionValue('');
   };
 
-  // useEffect(() => {
-  //   // Run face detection on the initial frame (optional)
-  //   if (webcamRef.current && canvasRef.current) {
-  //     captureImage();
-  //   }
-  // }, []); // Empty dependency array to run only once on mount
-
-  // useEffect(() => {
-  //   const inputValue = localStorage.getItem('User-Emotion');
-  //   console.log(inputValue);
-  //   if (inputValue) {
-  //     // navigate('/user/aiPlaylist');
-  //   }
-  // }, [navigate]);
-
   return (
     <div className="front_page_container">
-      <Toaster toastOptions={{ duration: 4000 }} />
+      <Toaster toastOptions={{ duration: 3000 }} />
       <div className="cameraContainer">
         <div className="cameraSettingComponent">
           <div className="mainWebCam">

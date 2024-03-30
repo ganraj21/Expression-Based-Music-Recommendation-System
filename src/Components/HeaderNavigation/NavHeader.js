@@ -3,6 +3,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { FaUser, FaRegBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import UserIconActions from './UserIconActions';
+import toast, { Toaster } from 'react-hot-toast';
 
 const NavHeader = () => {
   const navigate = useNavigate();
@@ -16,12 +17,18 @@ const NavHeader = () => {
   const goForward = () => {
     const CardInfo = JSON.parse(localStorage.getItem('FPath'));
 
-    console.log(CardInfo.title);
-    navigate(`/user/playlist/${CardInfo.title}`, {
-      state: {
-        CardInfo,
-      },
-    });
+    try {
+      console.log(CardInfo.title);
+      navigate(`/user/playlist/${CardInfo.title}`, {
+        state: {
+          CardInfo,
+        },
+      });
+    } catch (e) {
+      if (!CardInfo) {
+        toast.error('No Content Available');
+      }
+    }
   };
 
   const showUserActions = () => {
@@ -32,6 +39,7 @@ const NavHeader = () => {
   return (
     <>
       <div className="navOutContainer">
+        <Toaster toastOptions={{ duration: 3000 }} />
         <div className="navHeader">
           <div className="navSlider">
             <span className="leftIcon" onClick={goBackward}>
