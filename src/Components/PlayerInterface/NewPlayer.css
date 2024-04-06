@@ -1,0 +1,42 @@
+.playerWrapperClass,
+.player,
+.time-control,
+.play-control {
+  display: flex;
+}
+
+.player,
+.time-control,
+.play-control {
+  width: 800px;
+}
+
+.playerWrapperClass {
+  flex-direction: row;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background: #39192469;
+  backdrop-filter: blur(10px);
+  height: 72px;
+}
+.player {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.track {
+  width: 90%;
+}
+.track input {
+  width: 100%;
+}
+
+.time-control,
+.play-control {
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}

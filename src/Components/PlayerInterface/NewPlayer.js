@@ -1,88 +1,125 @@
-import React, { useContext, useRef, useState } from 'react';
-import SongInfo from './Component/Main/SongInfo';
-import Player from './Component/PlayerInterface/Player';
-import { MusicContext } from '../../MusicContext';
-
+import React, { useCallback, useContext, useEffect } from 'react';
+import { PlayerContext } from '../../PlayerContext';
+import { CgPlayTrackPrevO, CgPlayTrackNextO } from 'react-icons/cg';
+import { GiPauseButton } from 'react-icons/gi';
+import { BsFillPlayFill } from 'react-icons/bs';
+import './NewPlayer.css';
 const NewPlayer = () => {
-  const { songData, playerController, songPlay } = useContext(MusicContext);
+  const {
+    isPlaying,
+    playerRef,
+    playSongHandler,
+    drawerOpen,
+    tracks,
+    currentTrack,
+    setCurrentTrack,
+    songProgress,
+    setSongProgress,
+  } = useContext(PlayerContext);
 
-  const [uiState, setUiState] = useState({
-    aboutShown: false,
-    libraryShown: false,
-    libraryPinned: false,
-    coverSpinning: false,
-    songPlaying: false,
-    seekWidth: 0,
-  });
-
-  const [songState, setSongState] = useState({
-    currentSong: songData.length > 0 ? [songData[0]] : [], // Ensure songData has at least one element
-    isPlaying: false,
-    elapsed: 0,
-    duration: 0,
-  });
-
-  const audioRef = useRef(null);
-
-  const songEndHandler = async () => {
-    let currentIndex = songData.findIndex(
-      (song) => song === songState.currentSong[0]
-    );
-    await setSongState({
-      ...songState,
-      currentSong: [songData[(currentIndex + 1) % songData.length]],
-    });
-    audioRef.current.play();
+  const iconStyles = {
+    fontSize: 30,
+    color: '#D2E8D4',
   };
 
-  const songInfoHandler = (e) => {
-    const elapsed = e.target.currentTime;
-    const duration = e.target.duration;
-    setSongState({
-      ...songState,
-      duration: duration,
-      elapsed: elapsed,
-    });
+  useEffect(() => {
+    tracks.map((song) =>
+      song === currentTrack ? (song.active = true) : (song.active = false)
+    );
+  }, [currentTrack, tracks, playerRef, isPlaying]);
+
+  const getTime = (time) => {
+    return `${Math.floor(time / 60)}:${
+      Math.floor(time % 60) < 10
+        ? String(Math.floor(time % 60)).padStart(2, '0')
+        : Math.floor(time % 60)
+    }`;
+  };
+
+  const skipTrackHandler = useCallback(
+    async (direction) => {
+      const currentSongIndex = tracks.findIndex(
+        (song) => song === currentTrack
+      );
+      if (direction === 'next') {
+        await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
+        if (isPlaying) playerRef.current.play();
+      }
+      if (direction === 'prev') {
+        if (currentSongIndex > 0) {
+          await setCurrentTrack(tracks[currentSongIndex - 1]);
+          if (isPlaying) playerRef.current.play();
+        } else {
+          await setCurrentTrack(tracks[tracks.length - 1]);
+        }
+      }
+    },
+    [currentTrack, tracks, isPlaying, playerRef, setCurrentTrack]
+  );
+
+  useEffect(() => {
+    if (songProgress.percentAnimated === 100) {
+      skipTrackHandler('next');
+    }
+  }, [songProgress, skipTrackHandler]);
+
+  const dragHandler = (e) => {
+    playerRef.current.currentTime = e.target.value;
+    setSongProgress({ ...songProgress, currentTime: e.target.value });
+  };
+
+  const animateTrackSlider = {
+    transform: `translateX(${songProgress.percentAnimated}%)`,
+  };
+  const currentTrackStyle = {
+    // background: `linear-gradient(to right, ${currentTrack.color[0]}, ${currentTrack.color[1]}`,
   };
 
   return (
     <>
       <div className="playerWrapperClass">
-        <div
-          className={`app__wrapper ${
-            uiState.darkMode ? 'dark-mode' : 'light-mode'
-          }`}
-          style={{
-            backdropFilter: `${
-              uiState.libraryShown || uiState.aboutShown
-                ? 'none'
-                : 'blur(1.5rem)'
-            }`,
-            WebkitBackdropFilter: `${
-              uiState.libraryShown || uiState.aboutShown
-                ? 'none'
-                : 'blur(1.5rem)'
-            }`,
-          }}
-        >
-          <SongInfo songState={songState} />
-          <Player
-            uiState={uiState}
-            setUiState={setUiState}
-            audioRef={audioRef}
-            songState={songState}
-            setSongState={setSongState}
-          />
-          {songState.currentSong.length > 0 &&
-            songState.currentSong[0].audio && ( // Ensure songData is available and currentSong[0] has the audio property
-              <audio
-                ref={audioRef}
-                src={songState.currentSong[0].audio}
-                onTimeUpdate={songInfoHandler}
-                onLoadedMetadata={songInfoHandler}
-                onEnded={songEndHandler}
-              ></audio>
+        <div className={`player ${drawerOpen ? 'drawer__shrink_in' : ''}`}>
+          <div className="play-control">
+            <CgPlayTrackPrevO
+              style={iconStyles}
+              onClick={() => skipTrackHandler('prev')}
+              className="skip-back control-icon"
+            />
+            {isPlaying ? (
+              <GiPauseButton
+                onClick={playSongHandler}
+                className="control-icon"
+                style={iconStyles}
+              />
+            ) : (
+              <BsFillPlayFill
+                onClick={playSongHandler}
+                className="play control-icon"
+                style={iconStyles}
+              />
             )}
+            <CgPlayTrackNextO
+              onClick={() => skipTrackHandler('next')}
+              style={iconStyles}
+              className="skip-forward control-icon"
+            />
+          </div>
+          <div className="time-control">
+            <p>{getTime(songProgress.currentTime)}</p>
+            <div className="track" style={currentTrackStyle}>
+              <input
+                type="range"
+                min={0}
+                max={songProgress.duration || 0}
+                value={songProgress.currentTime}
+                onChange={dragHandler}
+              />
+              <div className="animate-track" style={animateTrackSlider} />
+            </div>
+            <p>
+              {songProgress.duration ? getTime(songProgress.duration) : '0:00'}
+            </p>
+          </div>
         </div>
       </div>
     </>

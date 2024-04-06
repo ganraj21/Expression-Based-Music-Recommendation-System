@@ -1,20 +1,33 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
-import { MusicContext } from './MusicContext';
+import React, { createContext, useEffect, useRef, useState } from 'react';
 const PlayerContext = createContext();
 
-export const PlayerProvider = ({ children }) => {
-  const { songData } = useContext(MusicContext);
-  const [tracks] = useState(songData);
+const PlayerProvider = ({ children }) => {
+  const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState(tracks[0]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const playerRef = useRef(null);
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [songProgress, setSongProgress] = useState({
     currentTime: 0,
     duration: 0,
     percentAnimated: 0,
   });
+
+  const uri = 'https://emotion-based-mrs-data.onrender.com';
+  useEffect(() => {
+    const getMusicData = async () => {
+      const res = await fetch(`${uri}/PlaylistSongs`);
+
+      if (res.ok) {
+        const result = await res.json();
+        setTracks(result.Happy);
+        console.log(result.Happy);
+      } else {
+        throw new Error('System Error');
+      }
+    };
+    setTimeout(getMusicData, 1500);
+  }, []);
 
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
@@ -28,6 +41,20 @@ export const PlayerProvider = ({ children }) => {
       duration,
     });
   };
+
+  const playSongHandler = async () => {
+    // const currentSongIndex = tracks.findIndex((song) => song === currentTrack);
+    // await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
+    if (isPlaying) playerRef.current?.play();
+    if (isPlaying) {
+      playerRef.current.pause();
+      setIsPlaying(!isPlaying);
+    } else {
+      playerRef.current?.play();
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -42,6 +69,7 @@ export const PlayerProvider = ({ children }) => {
         songProgress,
         currentTrack,
         setCurrentTrack,
+        playSongHandler,
       }}
     >
       {children}
@@ -49,6 +77,4 @@ export const PlayerProvider = ({ children }) => {
   );
 };
 
-export const usePlayerContext = () => {
-  return useContext(PlayerContext);
-};
+export { PlayerContext, PlayerProvider };

@@ -5,11 +5,11 @@ import { GiPauseButton } from 'react-icons/gi';
 import { FaHeart } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
-import { MusicContext } from '../../../MusicContext';
+import { PlayerContext } from '../../../PlayerContext';
 
 const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
-  const { playerController, songPlay } = useContext(MusicContext);
+  const { isPlaying, playSongHandler } = useContext(PlayerContext);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (playlistData === undefined) playlistData = CardInfo;
@@ -34,8 +34,8 @@ const PlaylistLayout = ({ playlistData }) => {
           </div>
         </div>
         <div className="operationSection">
-          <span className="playPauseIcon" onClick={playerController}>
-            {songPlay ? <GiPauseButton /> : <FaPlay />}
+          <span className="playPauseIcon" onClick={playSongHandler}>
+            {isPlaying ? <GiPauseButton /> : <FaPlay />}
           </span>
           <span
             className="loveIcon"

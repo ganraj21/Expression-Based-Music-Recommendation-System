@@ -4,7 +4,7 @@ const MusicContext = createContext();
 const MusicProvider = ({ children }) => {
   const [greeting, setGreeting] = useState('');
   const [cardData, setCardData] = useState([]);
-  const [songData, setSongData] = useState([]);
+
   const [songPlay, setSongPlaying] = useState(0);
   const [userId, setUserId] = useState('');
 
@@ -51,21 +51,6 @@ const MusicProvider = ({ children }) => {
     getFrontData();
   }, []);
 
-  useEffect(() => {
-    const getMusicData = async () => {
-      const res = await fetch(`${uri}/PlaylistSongs`);
-
-      if (res.ok) {
-        const result = await res.json();
-        setSongData(result.Happy);
-        console.log(result.Happy);
-      } else {
-        throw new Error('System Error');
-      }
-    };
-    setTimeout(getMusicData, 3000);
-  }, []);
-
   const playerController = () => {
     setSongPlaying(!songPlay);
   };
@@ -76,7 +61,6 @@ const MusicProvider = ({ children }) => {
         userId,
         greeting,
         cardData,
-        songData,
         playerController,
         songPlay,
       }}
