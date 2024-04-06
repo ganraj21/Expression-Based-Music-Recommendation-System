@@ -70,6 +70,7 @@
 
 /* -------------------------------- table styles --------------------------- */
 .playlistContainer {
+  overflow: scroll;
   padding: 0px 15px 15px 15px;
 }
 .labelInfo {

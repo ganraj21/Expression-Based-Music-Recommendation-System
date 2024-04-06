@@ -17,8 +17,7 @@
   border-radius: 10px;
 }
 
-.msCard h4,
-.subTitle {
+.msCard h4 {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
@@ -159,6 +158,11 @@
   width: 150px;
   color: #a7a7a7;
   -webkit-line-clamp: 2;
+}
+
+.subTitle {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* ------------------------- navHeader -------------------- */
