@@ -92,7 +92,8 @@
   position: sticky;
   justify-content: space-between;
   align-items: center;
-  background: #2a2929;
+  background: #ff0a5e59;
+  backdrop-filter: blur(10px);
 }
 
 .navOutContainer {

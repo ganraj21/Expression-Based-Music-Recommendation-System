@@ -25,7 +25,7 @@ const Phone_Auth = () => {
 
   const navigate = useNavigate();
 
-  function onCaptchVarify() {
+  const onCaptchVarify = () => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
         auth,
@@ -39,7 +39,7 @@ const Phone_Auth = () => {
         }
       );
     }
-  }
+  };
 
   function onSignup() {
     setLoading(true);

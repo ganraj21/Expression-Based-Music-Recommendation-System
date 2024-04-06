@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistLayout from './PlaylistLayout';
 import { useLocation } from 'react-router-dom';
-import NewPlayer from '../../Player/NewPlayer';
+import NewPlayer from '../../PlayerInterface/NewPlayer';
 import SideBarSection from '../../SidebarInterface/SideBarSection';
 import NavHeader from '../../HeaderNavigation/NavHeader';
 
