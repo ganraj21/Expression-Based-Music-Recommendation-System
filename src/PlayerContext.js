@@ -3,7 +3,7 @@ const PlayerContext = createContext();
 
 const PlayerProvider = ({ children }) => {
   const [tracks, setTracks] = useState([]);
-  const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+  const [currentTrack, setCurrentTrack] = useState([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const playerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -20,8 +20,8 @@ const PlayerProvider = ({ children }) => {
 
       if (res.ok) {
         const result = await res.json();
-        setTracks(result.Happy);
-        console.log(result.Happy);
+        setTracks(result);
+        console.log(result);
       } else {
         throw new Error('System Error');
       }
@@ -42,12 +42,14 @@ const PlayerProvider = ({ children }) => {
     });
   };
 
-  const playSongHandler = async () => {
-    // const currentSongIndex = tracks.findIndex((song) => song === currentTrack);
-    // await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
+  const playSongHandler = () => {
     if (isPlaying) playerRef.current?.play();
     if (isPlaying) {
-      playerRef.current.pause();
+      try {
+        playerRef.current.pause();
+      } catch (e) {
+        console.log(e);
+      }
       setIsPlaying(!isPlaying);
     } else {
       playerRef.current?.play();
