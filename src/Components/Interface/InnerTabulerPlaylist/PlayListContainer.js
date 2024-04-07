@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PlaylistLayout from './PlaylistLayout';
 import { useLocation } from 'react-router-dom';
 import NewPlayer from '../../PlayerInterface/NewPlayer';
@@ -8,11 +8,16 @@ import { PlayerContext } from '../../../PlayerContext';
 
 const PlayListContainer = () => {
   const location = useLocation();
-  const { playerRef, currentTrack, timeUpdateHandler } =
+  const { playerRef, currentTrack, timeUpdateHandler, skipTrackHandler } =
     useContext(PlayerContext);
   const { state } = location;
 
   const { e } = state;
+
+  useEffect(() => {
+    skipTrackHandler('next');
+  }, []);
+
   return (
     <>
       <div className="InnerPageSection">

@@ -4,6 +4,7 @@ import { CgPlayTrackPrevO, CgPlayTrackNextO } from 'react-icons/cg';
 import { GiPauseButton } from 'react-icons/gi';
 import { BsFillPlayFill } from 'react-icons/bs';
 import './NewPlayer.css';
+
 const NewPlayer = () => {
   const {
     isPlaying,
@@ -13,6 +14,7 @@ const NewPlayer = () => {
     tracks,
     currentTrack,
     setCurrentTrack,
+    skipTrackHandler,
     songProgress,
     setSongProgress,
   } = useContext(PlayerContext);
@@ -23,6 +25,7 @@ const NewPlayer = () => {
   };
 
   useEffect(() => {
+    console.log(1);
     tracks.map((song) =>
       song === currentTrack ? (song.active = true) : (song.active = false)
     );
@@ -36,31 +39,11 @@ const NewPlayer = () => {
     }`;
   };
 
-  const skipTrackHandler = useCallback(
-    async (direction) => {
-      const currentSongIndex = tracks.findIndex(
-        (song) => song === currentTrack
-      );
-      if (direction === 'next') {
-        await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
-        if (isPlaying) playerRef.current.play();
-      }
-      if (direction === 'prev') {
-        if (currentSongIndex > 0) {
-          await setCurrentTrack(tracks[currentSongIndex - 1]);
-          if (isPlaying) playerRef.current.play();
-        } else {
-          await setCurrentTrack(tracks[tracks.length - 1]);
-        }
-      }
-    },
-    [currentTrack, tracks, isPlaying, playerRef, setCurrentTrack]
-  );
-
   useEffect(() => {
     if (songProgress.percentAnimated === 100) {
       skipTrackHandler('next');
     }
+    console.log(2);
   }, [songProgress, skipTrackHandler]);
 
   const dragHandler = (e) => {
