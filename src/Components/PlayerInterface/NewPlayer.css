@@ -48,11 +48,15 @@
 }
 .song-container img {
   width: 54px !important;
+  height: 54px !important;
+  border-radius: 3px;
 }
 
 .song-container {
   display: flex;
   gap: 9px;
+  align-items: center;
+  justify-content: center;
 }
 @media only screen and (max-width: 840px) {
   .time-control,

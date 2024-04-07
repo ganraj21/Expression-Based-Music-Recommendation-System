@@ -79,7 +79,8 @@ const VideoCapture = () => {
         toast.success(emotionValue);
 
         setTimeout(() => {
-          const e = JSON.parse(localStorage.getItem('FPath'));
+          // const e = JSON.parse(localStorage.getItem('FPath'));
+          const e = emotionValue;
           console.log(e);
           navigate(`/user/playlist/${emotionValue}`, {
             state: {

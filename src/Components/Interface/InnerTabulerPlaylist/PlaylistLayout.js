@@ -1,4 +1,4 @@
-import React, { useContext, useState, useLocation } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
@@ -8,10 +8,8 @@ import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
 
 const PlaylistLayout = ({ playlistData }) => {
-  // const location = useLocation();
   const [likebtn, isLikeBtn] = useState(0);
-  // const { state } = location;
-  // const { event } = state;
+  console.log(playlistData);
   const {
     tracks,
     setCurrentTrack,
@@ -32,7 +30,6 @@ const PlaylistLayout = ({ playlistData }) => {
       playerRef.current.play();
     }
     tracks.map((song) =>
-      // console.log(song)
       song === row ? (song.active = true) : (song.active = false)
     );
     if (isPlaying) playerRef.current.play();
@@ -55,7 +52,7 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>{playlistData.title}</h1>
+              <h1>{playlistData?.title || playlistData}</h1>
             </span>
             <span className="subTitle">{playlistData.description}</span>
           </div>
