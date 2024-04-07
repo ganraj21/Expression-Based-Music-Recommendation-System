@@ -328,6 +328,10 @@
     /* min-width: 372px; */
     justify-items: center;
   }
+  .leftIcon svg,
+  .rightIcon svg {
+    height: 21px !important;
+  }
 }
 
 @media only screen and (max-width: 388px) {
