@@ -51,17 +51,6 @@ const VideoCapture = () => {
     console.log('FaceDetection Model is Loaded..');
     toast.success('FaceDetection Model is Loaded..');
 
-    // setTimeout(() => {
-    //   const e = JSON.parse(localStorage.getItem('FPath'));
-    //   console.log(e);
-    //   navigate(`/user/playlist/${e.title}`, {
-    //     state: {
-    //       e,
-    //     },
-    //   });
-    // }, 4000);
-
-    // }
     // Websocket
     var socket = new WebSocket('ws://localhost:8000');
 
@@ -74,6 +63,7 @@ const VideoCapture = () => {
 
     socket.onopen = () => socket.send(JSON.stringify(apiCall));
     socket.onmessage = function (event) {
+      console.log(event);
       var pred_log = JSON.parse(event.data);
 
       // Log the received prediction data for debugging
@@ -87,6 +77,16 @@ const VideoCapture = () => {
         // Set the emotion_text input value
         setEmotionValue(emotionValue);
         toast.success(emotionValue);
+
+        setTimeout(() => {
+          const e = JSON.parse(localStorage.getItem('FPath'));
+          console.log(e);
+          navigate(`/user/playlist/${emotionValue}`, {
+            state: {
+              e,
+            },
+          });
+        }, 2000);
 
         // Update localStorage if needed
         localStorage.setItem('User-Emotion', emotionValue);

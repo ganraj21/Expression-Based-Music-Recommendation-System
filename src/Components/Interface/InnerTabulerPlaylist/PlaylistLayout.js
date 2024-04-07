@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useLocation } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
@@ -8,7 +8,10 @@ import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
 
 const PlaylistLayout = ({ playlistData }) => {
+  // const location = useLocation();
   const [likebtn, isLikeBtn] = useState(0);
+  // const { state } = location;
+  // const { event } = state;
   const {
     tracks,
     setCurrentTrack,
@@ -41,7 +44,10 @@ const PlaylistLayout = ({ playlistData }) => {
         <div className="respectiveMusicInfo">
           <div className="cardImage">
             <img
-              src={playlistData.work_img}
+              src={
+                `https://source.unsplash.com/175x175/?${'happy'}` ||
+                playlistData.work_img
+              }
               class="img-fluid rounded-top"
               alt="card"
             />

@@ -160,11 +160,6 @@
   -webkit-line-clamp: 2;
 }
 
-.subTitle {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 /* ------------------------- navHeader -------------------- */
 .rightIcon,
 .leftIcon,
@@ -283,6 +278,11 @@
   border-radius: 6px;
 }
 
+.subTitle {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
 /* ----------------- responsive styles --------------- */
 @media only screen and (min-width: 440px) {
   .UserActionContainer {
@@ -293,6 +293,14 @@
   }
   .userContaineSection span {
     height: 36px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .subTitle {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
   }
 }
 
