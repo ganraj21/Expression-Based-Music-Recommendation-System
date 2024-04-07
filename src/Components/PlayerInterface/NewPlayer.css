@@ -73,3 +73,14 @@
     gap: 9px;
   }
 }
+
+@media only screen and (max-width: 840px) {
+  .metaInfo h2 {
+    display: none;
+  }
+  .metaInfo h1 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+}
