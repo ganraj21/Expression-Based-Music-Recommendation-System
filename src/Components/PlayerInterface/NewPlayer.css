@@ -5,10 +5,9 @@
   display: flex;
 }
 
-.player,
 .time-control,
 .play-control {
-  width: 800px;
+  width: 700px;
 }
 
 .playerWrapperClass {
@@ -23,13 +22,14 @@
   height: 72px;
 }
 .player {
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .track {
   width: 90%;
 }
+.player,
 .track input {
   width: 100%;
 }
@@ -41,11 +41,26 @@
   gap: 6px;
 }
 
+/* ------------------- songThumbnail */
+.songThumbnail {
+  left: 0;
+  padding: 10px;
+}
+.song-container img {
+  width: 54px !important;
+}
+
+.song-container {
+  display: flex;
+  gap: 9px;
+}
 @media only screen and (max-width: 840px) {
-  .player,
   .time-control,
   .play-control {
     width: 90%;
+  }
+  .playerContainer {
+    width: 80%;
   }
   .control-icon {
     font-size: 24px !important;

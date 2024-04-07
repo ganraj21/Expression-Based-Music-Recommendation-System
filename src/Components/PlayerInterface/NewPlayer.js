@@ -1,8 +1,13 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PlayerContext } from '../../PlayerContext';
-import { CgPlayTrackPrevO, CgPlayTrackNextO } from 'react-icons/cg';
+import { Song } from './Song';
+import {
+  IoPlaySkipBackOutline,
+  IoPlaySkipForwardOutline,
+} from 'react-icons/io5';
 import { GiPauseButton } from 'react-icons/gi';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { FaPlay } from 'react-icons/fa';
+import { LuListMusic } from 'react-icons/lu';
 import './NewPlayer.css';
 
 const NewPlayer = () => {
@@ -13,14 +18,13 @@ const NewPlayer = () => {
     drawerOpen,
     tracks,
     currentTrack,
-    setCurrentTrack,
     skipTrackHandler,
     songProgress,
     setSongProgress,
   } = useContext(PlayerContext);
 
   const iconStyles = {
-    fontSize: 30,
+    fontSize: 24,
     color: '#D2E8D4',
   };
 
@@ -62,46 +66,54 @@ const NewPlayer = () => {
     <>
       <div className="playerWrapperClass">
         <div className={`player ${drawerOpen ? 'drawer__shrink_in' : ''}`}>
-          <div className="play-control">
-            <CgPlayTrackPrevO
-              style={iconStyles}
-              onClick={() => skipTrackHandler('prev')}
-              className="skip-back control-icon"
-            />
-            {isPlaying ? (
-              <GiPauseButton
-                onClick={playSongHandler}
-                className="control-icon"
-                style={iconStyles}
-              />
-            ) : (
-              <BsFillPlayFill
-                onClick={playSongHandler}
-                className="play control-icon"
-                style={iconStyles}
-              />
-            )}
-            <CgPlayTrackNextO
-              onClick={() => skipTrackHandler('next')}
-              style={iconStyles}
-              className="skip-forward control-icon"
-            />
+          <div className="songThumbnail">
+            <Song />
           </div>
-          <div className="time-control">
-            <p>{getTime(songProgress.currentTime)}</p>
-            <div className="track" style={currentTrackStyle}>
-              <input
-                type="range"
-                min={0}
-                max={songProgress.duration || 0}
-                value={songProgress.currentTime}
-                onChange={dragHandler}
+          <div className="playerContainer">
+            <div className="play-control">
+              <LuListMusic style={iconStyles} />
+              <IoPlaySkipBackOutline
+                style={iconStyles}
+                onClick={() => skipTrackHandler('prev')}
+                className="skip-back control-icon"
               />
-              <div className="animate-track" style={animateTrackSlider} />
+              {isPlaying ? (
+                <GiPauseButton
+                  onClick={playSongHandler}
+                  className="control-icon"
+                  style={{ fontSize: '21px', width: '30px' }}
+                />
+              ) : (
+                <FaPlay
+                  onClick={playSongHandler}
+                  className="play control-icon"
+                  style={{ fontSize: '18px', width: '30px' }}
+                />
+              )}
+              <IoPlaySkipForwardOutline
+                onClick={() => skipTrackHandler('next')}
+                style={iconStyles}
+                className="skip-forward control-icon"
+              />
             </div>
-            <p>
-              {songProgress.duration ? getTime(songProgress.duration) : '0:00'}
-            </p>
+            <div className="time-control">
+              <p>{getTime(songProgress.currentTime)}</p>
+              <div className="track" style={currentTrackStyle}>
+                <input
+                  type="range"
+                  min={0}
+                  max={songProgress.duration || 0}
+                  value={songProgress.currentTime}
+                  onChange={dragHandler}
+                />
+                <div className="animate-track" style={animateTrackSlider} />
+              </div>
+              <p>
+                {songProgress.duration
+                  ? getTime(songProgress.duration)
+                  : '0:00'}
+              </p>
+            </div>
           </div>
         </div>
       </div>
