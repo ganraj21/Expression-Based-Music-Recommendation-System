@@ -91,7 +91,7 @@
   position: sticky;
   justify-content: space-between;
   align-items: center;
-  background: #ff0a5e59;
+  background: #00ffff38;
   backdrop-filter: blur(10px);
 }
 
@@ -186,10 +186,10 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  animation: wipe-enter 1s 1;
+  /* animation: wipe-enter 1s 1;
   animation-name: wipe-enter;
   animation-duration: 1s;
-  padding: 20px 0 20px 0;
+  padding: 20px 0 20px 0; */
 }
 @keyframes wipe-enter {
   0% {

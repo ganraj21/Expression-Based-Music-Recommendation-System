@@ -72,6 +72,7 @@
 .playlistContainer {
   overflow: scroll;
   padding: 0px 15px 15px 15px;
+  margin-bottom: 60px;
 }
 .labelInfo {
   flex-direction: column;
@@ -96,4 +97,16 @@
   background: #2a2929;
   color: #fff !important;
   border-radius: 9px;
+}
+
+@media only screen and (max-width: 700px) {
+  .headerTitle h1 {
+    font-size: 36px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .headerTitle h1 {
+    font-size: 30px;
+  }
 }
