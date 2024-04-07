@@ -21,13 +21,18 @@ const PlayerProvider = ({ children }) => {
 
   const uri = 'https://emotion-based-mrs-data.onrender.com';
   useEffect(() => {
+    const shuffle = (array) => {
+      return array.sort(() => Math.random() - 0.5);
+    };
+
     const getMusicData = async () => {
       const res = await fetch(`${uri}/PlaylistSongs`);
 
       if (res.ok) {
         const result = await res.json();
-        setTracks(result);
-        console.log(result);
+        setTracks(shuffle(result));
+        // setTracks(result);
+        console.log(tracks);
       } else {
         throw new Error('System Error');
       }

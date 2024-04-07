@@ -17,6 +17,7 @@ const PlaylistLayout = ({ playlistData }) => {
     isPlaying,
     setIsPlaying,
     playSongHandler,
+    currentTrack,
   } = useContext(PlayerContext);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
@@ -38,7 +39,10 @@ const PlaylistLayout = ({ playlistData }) => {
   return (
     <>
       <div className="listLayoutContainer">
-        <div className="respectiveMusicInfo">
+        <div
+          className="respectiveMusicInfo"
+          style={{ background: currentTrack?.palette }}
+        >
           <div className="cardImage">
             <img
               src={
@@ -80,12 +84,11 @@ const PlaylistLayout = ({ playlistData }) => {
             style={{
               width: '100%',
               borderCollapse: 'collapse',
-              marginTop: '20px',
             }}
           >
             <thead>
               <tr style={{ borderBottom: '1px solid #8b8b8b' }}>
-                <th style={tableHeaderStyle}>#</th>
+                {/* <th style={tableHeaderStyle}>#</th> */}
                 <th style={tableHeaderStyle}>Title</th>
                 <th style={tableHeaderStyle}>Album</th>
                 <th style={tableHeaderStyle}>
@@ -103,9 +106,9 @@ const PlaylistLayout = ({ playlistData }) => {
                     className="labelRow"
                     onClick={() => songSelectHandler(row)}
                   >
-                    <td style={tableCellStyle} className="labelNumber">
+                    {/* <td style={tableCellStyle} className="labelNumber">
                       {row.id}
-                    </td>
+                    </td> */}
                     <td style={tableCellStyle}>
                       <div className="musicLabelInfo">
                         <div className="musicLabelInfoImage">

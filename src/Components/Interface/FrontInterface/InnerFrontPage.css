@@ -111,7 +111,7 @@
 
 .rightMainContainer {
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
   width: 75%;
   margin: 10px 10px 10px 0;
   overflow: scroll;

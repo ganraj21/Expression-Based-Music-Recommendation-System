@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { FaUser, FaRegBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import UserIconActions from './UserIconActions';
 import toast, { Toaster } from 'react-hot-toast';
+import { PlayerContext } from '../../PlayerContext';
 
 const NavHeader = () => {
   const navigate = useNavigate();
   const [userActions, setUserAction] = useState(0);
 
+  const { currentTrack } = useContext(PlayerContext);
   const goBackward = () => {
     const UserId = localStorage.getItem('UserId');
     navigate(`/user/${UserId}`);
@@ -40,7 +42,10 @@ const NavHeader = () => {
     <>
       <div className="navOutContainer">
         <Toaster toastOptions={{ duration: 3000 }} />
-        <div className="navHeader">
+        <div
+          className="navHeader"
+          style={{ background: currentTrack?.palette }}
+        >
           <div className="navSlider">
             <span className="leftIcon" onClick={goBackward}>
               <FaAngleLeft
