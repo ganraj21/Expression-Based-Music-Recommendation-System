@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Track = ({
+export const Track = ({
   track,
   tracks,
   setCurrentTrack,
@@ -14,22 +14,21 @@ const Track = ({
       setIsPlaying(true);
       playerRef.current.play();
     }
-    tracks.map(song =>
-      song === track ? (song.active = true) : (song.active = false),
+    tracks.map((song) =>
+      song === track ? (song.active = true) : (song.active = false)
     );
     if (isPlaying) playerRef.current.play();
   };
   return (
     <div
       onClick={songSelectHandler}
-      className={`library-song ${track.active ? 'selected' : ''}`}>
+      className={`library-song ${track.active ? 'selected' : ''}`}
+    >
       <img src={track.cover} alt={track.name} />
-      <div className='library-card-row'>
+      <div className="library-card-row">
         <h3>{track.name}</h3>
         <h4>{track.artist}</h4>
       </div>
     </div>
   );
 };
-
-export default Track;

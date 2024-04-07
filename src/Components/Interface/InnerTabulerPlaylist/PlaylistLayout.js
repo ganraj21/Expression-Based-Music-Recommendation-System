@@ -9,10 +9,31 @@ import { PlayerContext } from '../../../PlayerContext';
 
 const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
-  const { isPlaying, playSongHandler } = useContext(PlayerContext);
+  const {
+    tracks,
+    setCurrentTrack,
+    playerRef,
+    isPlaying,
+    setIsPlaying,
+    playSongHandler,
+  } = useContext(PlayerContext);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (playlistData === undefined) playlistData = CardInfo;
+
+  const songSelectHandler = async (row) => {
+    await setCurrentTrack(row);
+    console.log(row);
+    if (!isPlaying) {
+      setIsPlaying(true);
+      playerRef.current.play();
+    }
+    tracks.map((song) =>
+      // console.log(song)
+      song === row ? (song.active = true) : (song.active = false)
+    );
+    if (isPlaying) playerRef.current.play();
+  };
 
   return (
     <>
@@ -72,29 +93,37 @@ const PlaylistLayout = ({ playlistData }) => {
               </tr>
             </thead>
             <tbody>
-              {playlistData.subMusic.map((row, index) => (
-                <tr key={index} className="labelRow">
-                  <td style={tableCellStyle} className="labelNumber">
-                    {row.id}
-                  </td>
-                  <td style={tableCellStyle}>
-                    <div className="musicLabelInfo">
-                      <div className="musicLabelInfoImage">
-                        <img src={row.work_img} alt="label Img" />
+              {tracks.map((row, index) => (
+                <>
+                  <tr
+                    key={index}
+                    className="labelRow"
+                    onClick={() => songSelectHandler(row)}
+                  >
+                    <td style={tableCellStyle} className="labelNumber">
+                      {row.id}
+                    </td>
+                    <td style={tableCellStyle}>
+                      <div className="musicLabelInfo">
+                        <div className="musicLabelInfoImage">
+                          <img src={row.coverUrl} alt="label Img" />
+                        </div>
+                        <div className="labelInfo">
+                          <span className="mainTitleName">{row.title}</span>
+                          <span className="subTitleName">
+                            {row.description}
+                          </span>
+                        </div>
                       </div>
-                      <div className="labelInfo">
-                        <span className="mainTitleName">{row.title}</span>
-                        <span className="subTitleName">{row.description}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td style={tableCellStyle} className="labelAlbumName">
-                    {row.albumName}
-                  </td>
-                  <td style={tableCellStyle} className="labelTimeZone">
-                    {row.time}
-                  </td>
-                </tr>
+                    </td>
+                    <td style={tableCellStyle} className="labelAlbumName">
+                      {row.artist}
+                    </td>
+                    <td style={tableCellStyle} className="labelTimeZone">
+                      {row.time}
+                    </td>
+                  </tr>
+                </>
               ))}
             </tbody>
           </table>
