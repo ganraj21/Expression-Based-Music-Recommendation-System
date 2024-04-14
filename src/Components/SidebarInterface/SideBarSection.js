@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoHome } from 'react-icons/go';
 import { IoSearchOutline } from 'react-icons/io5';
 import { MdLibraryMusic } from 'react-icons/md';
 import { FaPlus, FaArrowRight } from 'react-icons/fa6';
+import { MusicContext } from '../../MusicContext';
 const SideBarSection = () => {
   const navigate = useNavigate();
+  const { userId } = useContext(MusicContext);
   const Data = [
     {
       number: 1,
@@ -35,7 +37,7 @@ const SideBarSection = () => {
           <span
             className="sidebarHome"
             onClick={() => {
-              // navigate('/user');
+              navigate(`/user/${userId}`);
             }}
           >
             <GoHome style={{ height: '30px', width: '27px' }} /> Home

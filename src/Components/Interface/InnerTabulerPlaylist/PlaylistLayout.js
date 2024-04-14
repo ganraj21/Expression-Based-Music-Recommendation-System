@@ -6,10 +6,12 @@ import { FaHeart } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
+import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
 
 const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
-  console.log(playlistData);
+  const [addPlaylist, isAddPlaylist] = useState(0);
+  // console.log(playlistData);
   const {
     tracks,
     setCurrentTrack,
@@ -68,10 +70,10 @@ const PlaylistLayout = ({ playlistData }) => {
           <span
             className="loveIcon"
             onClick={() => {
-              isLikeBtn(!likebtn);
+              isAddPlaylist(!addPlaylist);
             }}
           >
-            {likebtn ? <FaHeart /> : <IoMdHeartEmpty />}
+            {addPlaylist ? <MdPlaylistAdd /> : <MdPlaylistAddCheck />}
           </span>
           <div className="listIcon">
             <span className="listIconBtn">
@@ -88,9 +90,9 @@ const PlaylistLayout = ({ playlistData }) => {
           >
             <thead>
               <tr style={{ borderBottom: '1px solid #8b8b8b' }}>
-                {/* <th style={tableHeaderStyle}>#</th> */}
                 <th style={tableHeaderStyle}>Title</th>
                 <th style={tableHeaderStyle}>Album</th>
+                <th style={tableHeaderStyle}>#</th>
                 <th style={tableHeaderStyle}>
                   <span className="labeltimeIcon">
                     <IoTimeOutline />
@@ -106,9 +108,6 @@ const PlaylistLayout = ({ playlistData }) => {
                     className="labelRow"
                     onClick={() => songSelectHandler(row)}
                   >
-                    {/* <td style={tableCellStyle} className="labelNumber">
-                      {row.id}
-                    </td> */}
                     <td style={tableCellStyle}>
                       <div className="musicLabelInfo">
                         <div className="musicLabelInfoImage">
@@ -124,6 +123,15 @@ const PlaylistLayout = ({ playlistData }) => {
                     </td>
                     <td style={tableCellStyle} className="labelAlbumName">
                       {row.artist}
+                    </td>
+                    <td
+                      style={tableCellStyle}
+                      className="labelLike"
+                      onClick={() => {
+                        isLikeBtn(!likebtn);
+                      }}
+                    >
+                      {likebtn ? <IoMdHeartEmpty /> : <FaHeart />}
                     </td>
                     <td style={tableCellStyle} className="labelTimeZone">
                       {row.time}
