@@ -4,6 +4,7 @@ import { FaUser, FaRegBell } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import UserIconActions from './UserIconActions';
 import toast, { Toaster } from 'react-hot-toast';
+import { FiSearch } from 'react-icons/fi';
 import { PlayerContext } from '../../PlayerContext';
 import { MusicContext } from '../../MusicContext';
 import { SpotifyMusicContext } from '../../SpotifyMusicContext';
@@ -81,7 +82,6 @@ const NavHeader = () => {
               onKeyDown={handleKeyPress}
               style={{
                 width: '85%',
-                background: '#0000005c',
                 height: '36px',
                 color: '#fff',
                 paddingLeft: '10px',
@@ -89,11 +89,12 @@ const NavHeader = () => {
                 borderRadius: '9px',
               }}
             />
+            <FiSearch />
           </div>
           <div className="userProfileIcons">
-            <span className="notificationBell">
+            {/* <span className="notificationBell">
               <FaRegBell style={{ height: '21px', width: '15px' }} />
-            </span>
+            </span> */}
             <span className="userProfile" onClick={showUserActions}>
               <FaUser style={{ height: '21px', width: '15px' }} />
             </span>

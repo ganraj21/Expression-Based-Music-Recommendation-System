@@ -103,6 +103,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #0000005c;
+  border-radius: 10px;
+}
+.nav__search input:focus {
+  outline: none;
 }
 /* ------------------------ main containers ------------------------- */
 
@@ -237,7 +242,9 @@
   padding: 0px 0 0px 12px;
   align-items: center;
 }
-
+.sidebarSearch input:focus {
+  outline: none;
+}
 .createLiOptions {
   align-items: center;
   justify-content: space-between;
@@ -305,6 +312,9 @@
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+  }
+  .nav__search {
+    display: none;
   }
 }
 
