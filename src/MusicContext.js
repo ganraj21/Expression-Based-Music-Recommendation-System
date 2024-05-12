@@ -4,7 +4,7 @@ const MusicContext = createContext();
 const MusicProvider = ({ children }) => {
   const [greeting, setGreeting] = useState('');
   const [cardData, setCardData] = useState([]);
-
+  const [videoCh, setVideoCh] = useState(0);
   const [songPlay, setSongPlaying] = useState(0);
   const [userId, setUserId] = useState('');
 
@@ -63,6 +63,8 @@ const MusicProvider = ({ children }) => {
         cardData,
         playerController,
         songPlay,
+        videoCh,
+        setVideoCh,
       }}
     >
       {children}

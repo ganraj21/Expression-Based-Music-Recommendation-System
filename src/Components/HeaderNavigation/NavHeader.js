@@ -5,20 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import UserIconActions from './UserIconActions';
 import toast, { Toaster } from 'react-hot-toast';
 import { PlayerContext } from '../../PlayerContext';
+import { MusicContext } from '../../MusicContext';
 
 const NavHeader = () => {
   const navigate = useNavigate();
   const [userActions, setUserAction] = useState(0);
+  const { setVideoCh, videoCh } = useContext(MusicContext);
 
-  const { currentTrack } = useContext(PlayerContext);
+  const { currentTrack, shuffle, tracks } = useContext(PlayerContext);
   const goBackward = () => {
+    shuffle(tracks);
     const UserId = localStorage.getItem('UserId');
     navigate(`/user/${UserId}`);
+    if (videoCh) setVideoCh(0);
   };
 
   const goForward = () => {
     const CardInfo = JSON.parse(localStorage.getItem('FPath'));
-
+    shuffle(tracks);
     try {
       console.log(CardInfo.title);
       navigate(`/user/playlist/${CardInfo.title}`, {

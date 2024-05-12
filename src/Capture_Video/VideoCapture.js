@@ -11,7 +11,7 @@ const VideoCapture = () => {
   const canvasRef = useRef(null);
   const navigate = useNavigate();
   const [EmotionValue, setEmotionValue] = useState(null);
-  const { userId } = useContext(MusicContext);
+  const { userId, videoCh, setVideoCh } = useContext(MusicContext);
 
   const captureImage = async () => {
     if (!webcamRef.current || !canvasRef.current) {
@@ -100,7 +100,10 @@ const VideoCapture = () => {
       console.error('WebSocket Error:', error);
       setTimeout(() => {
         toast.error('Socket Connection Error. Please try again later.');
-        navigate(`/user/${userId}`);
+        setVideoCh(1);
+        setTimeout(() => {
+          navigate(`/user/${userId}`);
+        }, 1000);
       }, 2000);
     };
   };

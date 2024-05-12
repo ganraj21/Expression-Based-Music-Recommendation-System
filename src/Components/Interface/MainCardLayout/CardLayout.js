@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MusicContext } from '../../../MusicContext';
 
 const CardLayout = () => {
-  const { greeting, cardData } = useContext(MusicContext);
+  const { greeting, cardData, setVideoCh } = useContext(MusicContext);
   const navigate = useNavigate();
 
   return (
@@ -30,8 +30,10 @@ const CardLayout = () => {
                           },
                         });
                         return;
+                      } else if (e.title === 'AI Generated Playlist') {
+                        setVideoCh(1);
                       }
-                      navigate(`/user/capture`);
+                      // navigate(`/user/capture`);
                     }}
                   >
                     <img src={e.work_img} alt="music section" />

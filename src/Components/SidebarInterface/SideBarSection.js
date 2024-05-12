@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoHome } from 'react-icons/go';
 import { IoSearchOutline } from 'react-icons/io5';
 import { MdLibraryMusic } from 'react-icons/md';
 import { FaPlus, FaArrowRight } from 'react-icons/fa6';
 import { MusicContext } from '../../MusicContext';
+import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 const SideBarSection = () => {
   const navigate = useNavigate();
   const { userId } = useContext(MusicContext);
+  const { setKeyword, keyword, fetchMusicData, setResultOffset } =
+    useContext(SpotifyMusicContext);
+  const [toSearch, isSetSearch] = useState(1);
   const Data = [
     {
       number: 1,
@@ -30,6 +34,14 @@ const SideBarSection = () => {
       description: 'Lana Del Rey and more',
     },
   ];
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setResultOffset(0);
+      fetchMusicData();
+      navigate(`/user/search/${keyword}`);
+    }
+  };
   return (
     <>
       <div className="sideBarContainer">
@@ -42,9 +54,29 @@ const SideBarSection = () => {
           >
             <GoHome style={{ height: '30px', width: '27px' }} /> Home
           </span>
-          <span className="sidebarSearch">
+
+          <span className="sidebarSearch" onClick={(e) => isSetSearch(0)}>
             <IoSearchOutline style={{ height: '30px', width: '27px' }} />
-            Search
+            {toSearch ? (
+              <>Search</>
+            ) : (
+              <>
+                <input
+                  type="text"
+                  value={keyword}
+                  onChange={(event) => setKeyword(event.target.value)}
+                  onKeyDown={handleKeyPress}
+                  style={{
+                    width: '85%',
+                    background: 'transparent',
+                    height: '36px',
+                    color: '#fff',
+                    paddingLeft: '10px',
+                    border: '1px #fff',
+                  }}
+                />
+              </>
+            )}
           </span>
         </div>
         <div className="bottomOperations">

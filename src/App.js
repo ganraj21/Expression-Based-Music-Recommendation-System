@@ -4,6 +4,7 @@ import PhoneAuth from './Authentication/Phone_Auth';
 import VideoCapture from './Capture_Video/VideoCapture';
 import InnerFrontPage from './Components/Interface/FrontInterface/InnerFrontPage';
 import PlayListContainer from './Components/Interface/InnerTabulerPlaylist/PlayListContainer';
+import MusicSearch from './Components/SearchInterface/MusicSearch';
 
 const App = () => {
   return (
@@ -17,8 +18,7 @@ const App = () => {
             path="user/playlist/:id"
             element={<PlayListContainer />}
           />
-          <Route exact path="/user/capture" element={<VideoCapture />} />
-          {/* <Route exact path="/user/aiPlaylist" element={<GeneratePlaylist />} /> */}
+          <Route exact path="/user/search/:id" element={<MusicSearch />} />
         </Routes>
       </BrowserRouter>
     </>

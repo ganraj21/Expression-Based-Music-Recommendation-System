@@ -20,11 +20,12 @@ const PlayerProvider = ({ children }) => {
   });
 
   const uri = 'https://emotion-based-mrs-data.onrender.com';
-  useEffect(() => {
-    const shuffle = (array) => {
-      return array.sort(() => Math.random() - 0.5);
-    };
 
+  const shuffle = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
+  useEffect(() => {
     const getMusicData = async () => {
       const res = await fetch(`${uri}/PlaylistSongs`);
 
@@ -95,10 +96,22 @@ const PlayerProvider = ({ children }) => {
     },
     [currentTrack, tracks, isPlaying, playerRef, setCurrentTrack]
   );
+
+  const handleSpotifyLogin = () => {
+    const clientId = '738b40260db24fbaaacef0d6f5527b1d';
+    const redirectUri = 'http://localhost:3001/';
+    const scopes = ['user-read-private', 'playlist-read-private'];
+    const spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+      '%20'
+    )}&response_type=token`;
+
+    window.location.href = spotifyAuthUrl;
+  };
   return (
     <PlayerContext.Provider
       value={{
         tracks,
+        setTracks,
         drawerOpen,
         setDrawerOpen,
         playerRef,
@@ -111,6 +124,8 @@ const PlayerProvider = ({ children }) => {
         setCurrentTrack,
         playSongHandler,
         skipTrackHandler,
+        handleSpotifyLogin,
+        shuffle,
       }}
     >
       {children}

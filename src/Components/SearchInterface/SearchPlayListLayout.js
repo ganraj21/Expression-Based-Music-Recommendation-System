@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { FaPlay, FaList } from 'react-icons/fa';
 import { GiPauseButton } from 'react-icons/gi';
 import { FaHeart } from 'react-icons/fa';
 import { IoTimeOutline } from 'react-icons/io5';
-import './PlaylistLayout.css';
-import { PlayerContext } from '../../../PlayerContext';
+import '../Interface/InnerTabulerPlaylist/PlaylistLayout.css';
 import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
+import { PlayerContext } from '../../PlayerContext';
 
-const PlaylistLayout = ({ playlistData }) => {
+const SearchPlayListLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
   const [addPlaylist, isAddPlaylist] = useState(0);
   console.log(playlistData);
   const {
     tracks,
-    setTracks,
+    // setTracks,
     setCurrentTrack,
     playerRef,
     isPlaying,
@@ -25,25 +25,8 @@ const PlaylistLayout = ({ playlistData }) => {
 
   console.log(tracks);
 
-  // ------------------------------------------- >>>
-
-  // useEffect(() => {
-  //   // Initialize SpotifyWebApi instance
-  //   const spotifyApi = new SpotifyWebApi();
-  //   spotifyApi.setAccessToken('fab64f3955b24f40a381827c26f46756');
-
-  //   // Example: Fetch artist albums
-  //   spotifyApi.getArtistAlbums('ARTIST_ID', function (err, data) {
-  //     if (err) {
-  //       console.error(err);
-  //     } else {
-  //       console.log('Artist albums:', data);
-  //     }
-  //   });
-  // }, []);
-
-  const CardInfo = JSON.parse(localStorage.getItem('FPath'));
-  if (playlistData === undefined) playlistData = CardInfo;
+  //   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
+  // if (playlistData === undefined) playlistData = CardInfo;
 
   const songSelectHandler = async (row) => {
     await setCurrentTrack(row);
@@ -68,8 +51,8 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardImage">
             <img
               src={
-                `https://source.unsplash.com/175x175/?${'happy'}` ||
-                playlistData?.work_img
+                playlistData[0]?.items[0]?.album?.images[0].url ||
+                `https://source.unsplash.com/175x175/?${'happy'}`
               }
               class="img-fluid rounded-top"
               alt="card"
@@ -78,17 +61,15 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>{playlistData?.title}</h1>
+              <h1>{playlistData[0]?.items[0]?.name}</h1>
             </span>
-            <span className="subTitle">{playlistData?.description}</span>
+            <span className="subTitle">
+              {playlistData[0]?.items[0]?.album?.name}
+            </span>
           </div>
         </div>
         <div className="operationSection">
-          <span
-            className="playPauseIcon"
-            onClick={playSongHandler}
-            // onClick={handleSpotifyLogin}
-          >
+          <span className="playPauseIcon" onClick={playSongHandler}>
             {isPlaying ? <GiPauseButton /> : <FaPlay />}
           </span>
           <span
@@ -116,6 +97,7 @@ const PlaylistLayout = ({ playlistData }) => {
               <tr style={{ borderBottom: '1px solid #8b8b8b' }}>
                 <th style={tableHeaderStyle}>Title</th>
                 <th style={tableHeaderStyle}>Album</th>
+                <th style={tableHeaderStyle}>Artist</th>
                 <th style={tableHeaderStyle}>#</th>
                 <th style={tableHeaderStyle}>
                   <span className="labeltimeIcon">
@@ -125,7 +107,7 @@ const PlaylistLayout = ({ playlistData }) => {
               </tr>
             </thead>
             <tbody>
-              {tracks?.map((row, index) => (
+              {playlistData[0]?.items?.map((row, index) => (
                 <>
                   <tr
                     key={index}
@@ -145,13 +127,16 @@ const PlaylistLayout = ({ playlistData }) => {
                             {row?.name || row?.title}
                           </span>
                           <span className="subTitleName">
-                            {row?.description}
+                            {row?.album?.name}
                           </span>
                         </div>
                       </div>
                     </td>
                     <td style={tableCellStyle} className="labelAlbumName">
-                      {row?.artist}
+                      {row?.album?.name}
+                    </td>
+                    <td style={tableCellStyle} className="labelAlbumName">
+                      {row?.album?.artists[0].name}
                     </td>
                     <td
                       style={tableCellStyle}
@@ -176,9 +161,9 @@ const PlaylistLayout = ({ playlistData }) => {
   );
 };
 
-export default PlaylistLayout;
+export default SearchPlayListLayout;
 
-PlaylistLayout.defaultProps = {
+SearchPlayListLayout.defaultProps = {
   // You can specify default values here
   // For example:
   playlistData: {}, // Default playlist data, empty object

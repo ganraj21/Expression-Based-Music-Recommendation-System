@@ -89,6 +89,8 @@
 }
 .musicLabelInfoImage img {
   border-radius: 6px;
+  width: 60px !important;
+  height: 60px !important;
 }
 .labelRow {
   cursor: pointer;

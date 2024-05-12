@@ -11,7 +11,6 @@ const PlayListContainer = () => {
   const { playerRef, currentTrack, timeUpdateHandler, skipTrackHandler } =
     useContext(PlayerContext);
   const { state } = location;
-
   const { e } = state;
 
   useEffect(() => {
