@@ -99,7 +99,11 @@
   position: sticky;
   top: 0;
 }
-
+.nav__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* ------------------------ main containers ------------------------- */
 
 .PCInnerContainer {

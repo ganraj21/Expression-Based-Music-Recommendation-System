@@ -6,13 +6,16 @@ import UserIconActions from './UserIconActions';
 import toast, { Toaster } from 'react-hot-toast';
 import { PlayerContext } from '../../PlayerContext';
 import { MusicContext } from '../../MusicContext';
+import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 
 const NavHeader = () => {
   const navigate = useNavigate();
   const [userActions, setUserAction] = useState(0);
   const { setVideoCh, videoCh } = useContext(MusicContext);
-
+  const { setKeyword, keyword, fetchMusicData, setResultOffset } =
+    useContext(SpotifyMusicContext);
   const { currentTrack, shuffle, tracks } = useContext(PlayerContext);
+
   const goBackward = () => {
     shuffle(tracks);
     const UserId = localStorage.getItem('UserId');
@@ -42,6 +45,14 @@ const NavHeader = () => {
     setUserAction(!userActions);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setResultOffset(0);
+      fetchMusicData();
+      navigate(`/user/search/${keyword}`);
+    }
+  };
+
   return (
     <>
       <div className="navOutContainer">
@@ -62,7 +73,23 @@ const NavHeader = () => {
               />
             </span>
           </div>
-
+          <div className="nav__search">
+            <input
+              type="text"
+              value={keyword}
+              onChange={(event) => setKeyword(event.target.value)}
+              onKeyDown={handleKeyPress}
+              style={{
+                width: '85%',
+                background: '#0000005c',
+                height: '36px',
+                color: '#fff',
+                paddingLeft: '10px',
+                border: '1px #fff',
+                borderRadius: '9px',
+              }}
+            />
+          </div>
           <div className="userProfileIcons">
             <span className="notificationBell">
               <FaRegBell style={{ height: '21px', width: '15px' }} />
