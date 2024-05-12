@@ -83,6 +83,7 @@ const NavHeader = () => {
               style={{
                 width: '85%',
                 height: '36px',
+                background: 'transparent',
                 color: '#fff',
                 paddingLeft: '10px',
                 border: '1px #fff',
