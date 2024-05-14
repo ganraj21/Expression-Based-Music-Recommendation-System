@@ -105,6 +105,7 @@
   justify-content: center;
   background-color: #0000005c;
   border-radius: 10px;
+  width: 60%;
 }
 .nav__search input:focus {
   outline: none;
@@ -313,11 +314,13 @@
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
   }
+}
+
+@media only screen and (min-width: 800px) {
   .nav__search {
     display: none;
   }
 }
-
 @media only screen and (max-width: 800px) {
   .sideBarContainer {
     display: none;

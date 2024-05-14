@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { initializePlaylist } from './initialize';
+import { PlayerContext } from './PlayerContext';
 const SpotifyMusicContext = createContext();
 
 const SpotifyAPIContextProvider = ({ children }) => {
@@ -12,10 +13,11 @@ const SpotifyAPIContextProvider = ({ children }) => {
   const [message, setMessage] = useState('');
   const [tracks, setTracks] = useState([]);
   const [token, setToken] = useState(null);
-  const [currentTrack, setCurrentTrack] = useState(tracks[0]?.items);
 
+  const { setCurrentTrack } = useContext(PlayerContext);
   const fetchMusicData = async () => {
     setTracks([]);
+    setCurrentTrack([]);
     window.scrollTo(0, 0);
     setIsLoading(true);
     try {
@@ -40,12 +42,13 @@ const SpotifyAPIContextProvider = ({ children }) => {
       if (typeof jsonData === 'object' && jsonData !== null) {
         setTracks(Object.keys(jsonData).map((key) => jsonData[key]));
       } else {
-        setTracks(jsonData);
+        setTracks(jsonData?.tracks.items);
       }
       // Convert object properties to an array of objects
-
-      // .tracks.items
-      console.log(jsonData?.tracks.items);
+      setTracks(jsonData?.tracks.items);
+      setCurrentTrack(jsonData?.tracks.items[0]);
+      localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks.items));
+      localStorage.setItem('nextRoute', 's');
     } catch (error) {
       setMessage(error.message);
     } finally {
@@ -53,6 +56,9 @@ const SpotifyAPIContextProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    setCurrentTrack(tracks[0]?.items[0]);
+  }, []);
   // current client credentials will be deleted in few days
   const fetchToken = async () => {
     try {
@@ -80,7 +86,6 @@ const SpotifyAPIContextProvider = ({ children }) => {
 
   useEffect(() => {
     initializePlaylist();
-
     fetchToken();
     setLikedMusic(JSON.parse(localStorage.getItem('likedMusic')));
     setpinnedMusic(JSON.parse(localStorage.getItem('pinnedMusic')));
@@ -102,7 +107,6 @@ const SpotifyAPIContextProvider = ({ children }) => {
         setKeyword,
         keyword,
         tracks,
-        currentTrack,
       }}
     >
       {children}

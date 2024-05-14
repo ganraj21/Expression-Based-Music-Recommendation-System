@@ -3,11 +3,13 @@ import { PlayerContext } from '../../PlayerContext';
 
 export const Song = () => {
   const {
-    currentTrack: track,
+    currentTrack,
+    // : track,
     isPlaying,
     drawerOpen,
   } = useContext(PlayerContext);
   // const { color } = track;
+  console.log(currentTrack);
   return (
     <div
       className={`song-container ${drawerOpen ? 'drawer__shrink_in' : ''}`}
@@ -17,13 +19,13 @@ export const Song = () => {
       // }}
     >
       <img
-        src={track?.coverUrl}
+        src={currentTrack?.album?.images[0].url || currentTrack?.coverUrl}
         className={isPlaying ? 'spinning__cover' : ''}
-        alt={track?.title}
+        alt={currentTrack?.title || currentTrack?.album?.name}
       />
       <div className="metaInfo">
-        <h1>{track?.title}</h1>
-        <h2>{track?.artist}</h2>
+        <h1>{currentTrack?.title || currentTrack?.album?.name}</h1>
+        <h2>{currentTrack?.artist}</h2>
       </div>
     </div>
   );

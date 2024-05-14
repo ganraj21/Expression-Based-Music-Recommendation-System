@@ -15,10 +15,12 @@ const NavHeader = () => {
   const { setVideoCh, videoCh } = useContext(MusicContext);
   const { setKeyword, keyword, fetchMusicData, setResultOffset } =
     useContext(SpotifyMusicContext);
-  const { currentTrack, shuffle, tracks } = useContext(PlayerContext);
+  const { currentTrack, shuffle, tracks, setTracks } =
+    useContext(PlayerContext);
 
   const goBackward = () => {
     shuffle(tracks);
+    setKeyword('');
     const UserId = localStorage.getItem('UserId');
     navigate(`/user/${UserId}`);
     if (videoCh) setVideoCh(0);
@@ -26,14 +28,20 @@ const NavHeader = () => {
 
   const goForward = () => {
     const CardInfo = JSON.parse(localStorage.getItem('FPath'));
+
+    // setTracks(CardInfo);
     shuffle(tracks);
     try {
       console.log(CardInfo.title);
-      navigate(`/user/playlist/${CardInfo.title}`, {
-        state: {
-          CardInfo,
-        },
-      });
+      let nextResult = localStorage.getItem('nextRoute');
+      navigate(
+        `/user/${nextResult === 's' ? 'search' : 'playlist'}/${CardInfo.title}`,
+        {
+          state: {
+            CardInfo,
+          },
+        }
+      );
     } catch (e) {
       if (!CardInfo) {
         toast.error('No Content Available');

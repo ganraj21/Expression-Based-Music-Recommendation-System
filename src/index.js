@@ -7,12 +7,12 @@ import { PlayerProvider } from './PlayerContext';
 import { SpotifyAPIContextProvider } from './SpotifyMusicContext';
 
 ReactDOM.render(
-  <SpotifyAPIContextProvider>
-    <MusicProvider>
-      <PlayerProvider>
+  <PlayerProvider>
+    <SpotifyAPIContextProvider>
+      <MusicProvider>
         <App />
-      </PlayerProvider>
-    </MusicProvider>
-  </SpotifyAPIContextProvider>,
+      </MusicProvider>
+    </SpotifyAPIContextProvider>
+  </PlayerProvider>,
   document.getElementById('root')
 );

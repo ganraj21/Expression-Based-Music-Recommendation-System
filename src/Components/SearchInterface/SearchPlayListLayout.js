@@ -7,13 +7,14 @@ import { IoTimeOutline } from 'react-icons/io5';
 import '../Interface/InnerTabulerPlaylist/PlaylistLayout.css';
 import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
 import { PlayerContext } from '../../PlayerContext';
+import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 
 const SearchPlayListLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
   const [addPlaylist, isAddPlaylist] = useState(0);
-  console.log(playlistData);
+  const { tracks } = useContext(SpotifyMusicContext);
   const {
-    tracks,
+    // tracks,
     // setTracks,
     setCurrentTrack,
     playerRef,
@@ -23,8 +24,9 @@ const SearchPlayListLayout = ({ playlistData }) => {
     playSongHandler,
   } = useContext(PlayerContext);
 
-  console.log(tracks);
-
+  // console.log(tracks);
+  // console.log(playlistData);
+  // console.log(currentTrack);
   //   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   // if (playlistData === undefined) playlistData = CardInfo;
 
@@ -35,12 +37,13 @@ const SearchPlayListLayout = ({ playlistData }) => {
       setIsPlaying(true);
       playerRef.current.play();
     }
-    tracks.map((song) =>
+    playlistData.map((song) =>
       song === row ? (song.active = true) : (song.active = false)
     );
     if (isPlaying) playerRef.current.play();
   };
 
+  console.log(playlistData);
   return (
     <>
       <div className="listLayoutContainer">
@@ -51,7 +54,7 @@ const SearchPlayListLayout = ({ playlistData }) => {
           <div className="cardImage">
             <img
               src={
-                playlistData[0]?.items[0]?.album?.images[0].url ||
+                tracks[0]?.album?.images[0].url ||
                 `https://source.unsplash.com/175x175/?${'happy'}`
               }
               class="img-fluid rounded-top"
@@ -61,11 +64,9 @@ const SearchPlayListLayout = ({ playlistData }) => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>{playlistData[0]?.items[0]?.name}</h1>
+              <h1>{tracks[0]?.name}</h1>
             </span>
-            <span className="subTitle">
-              {playlistData[0]?.items[0]?.album?.name}
-            </span>
+            <span className="subTitle">{tracks[0]?.album?.name}</span>
           </div>
         </div>
         <div className="operationSection">
@@ -107,7 +108,7 @@ const SearchPlayListLayout = ({ playlistData }) => {
               </tr>
             </thead>
             <tbody>
-              {playlistData[0]?.items?.map((row, index) => (
+              {tracks?.map((row, index) => (
                 <>
                   <tr
                     key={index}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SideBarSection from '../SidebarInterface/SideBarSection';
 import NavHeader from '../HeaderNavigation/NavHeader';
 import { SpotifyMusicContext } from '../../SpotifyMusicContext';
@@ -8,14 +8,20 @@ import { PlayerContext } from '../../PlayerContext';
 
 const MusicSearch = () => {
   const { tracks } = useContext(SpotifyMusicContext);
-  const { playerRef, currentTrack, setCurrentTrack, timeUpdateHandler } =
+  const { playerRef, currentTrack, timeUpdateHandler } =
     useContext(PlayerContext);
-  // tracks = tracks[0]?.items;
+  const [newTrack, setNewTrack] = useState([]);
 
+  console.log(currentTrack);
   useEffect(() => {
-    setCurrentTrack(tracks[0]?.items);
+    const listData = JSON.parse(localStorage.getItem('FPath'));
+    console.log(listData);
+    setNewTrack(listData);
+    // for (var i = 0; i < newTrack.length; i++) {
+    //   if (newTrack[i].preview_url != null) setNewTrack(newTrack[i]);
+    // }
   }, [tracks]);
-
+  console.log(newTrack);
   // console.log(currentTrack[0]?.preview_url);
   return (
     <>
@@ -24,14 +30,15 @@ const MusicSearch = () => {
           <SideBarSection />
           <div className="rightMainContainer">
             <NavHeader />
-            <SearchPlayListLayout playlistData={tracks} />
+            <SearchPlayListLayout playlistData={currentTrack} />
           </div>
           <NewPlayer />
           <audio
+            className="audio player"
             onTimeUpdate={timeUpdateHandler}
             onLoadedMetadata={timeUpdateHandler}
             ref={playerRef}
-            src={currentTrack?.audio}
+            src={currentTrack?.preview_url || newTrack?.preview_url}
           />
         </div>
       </div>

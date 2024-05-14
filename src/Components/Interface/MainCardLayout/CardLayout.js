@@ -24,6 +24,7 @@ const CardLayout = () => {
                       console.log(e);
                       if (e.title !== 'AI Generated Playlist') {
                         localStorage.setItem('FPath', JSON.stringify(e));
+                        localStorage.setItem('nextRoute', 'p');
                         navigate(`/user/playlist/${e.title}`, {
                           state: {
                             e,

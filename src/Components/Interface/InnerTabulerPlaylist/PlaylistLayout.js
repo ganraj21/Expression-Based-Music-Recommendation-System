@@ -11,7 +11,7 @@ import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
 const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
   const [addPlaylist, isAddPlaylist] = useState(0);
-  console.log(playlistData);
+  // console.log(playlistData);
   const {
     tracks,
     setTracks,
@@ -43,7 +43,9 @@ const PlaylistLayout = ({ playlistData }) => {
   // }, []);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
-  if (playlistData === undefined) playlistData = CardInfo;
+  if (CardInfo === undefined) setTracks(CardInfo);
+
+  console.log(tracks);
 
   const songSelectHandler = async (row) => {
     await setCurrentTrack(row);
@@ -68,8 +70,8 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardImage">
             <img
               src={
-                `https://source.unsplash.com/175x175/?${'happy'}` ||
-                playlistData?.work_img
+                tracks[0]?.coverUrl ||
+                `https://source.unsplash.com/175x175/?${'happy'}`
               }
               class="img-fluid rounded-top"
               alt="card"
@@ -78,17 +80,13 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>{playlistData?.title}</h1>
+              <h1>{tracks[0]?.title}</h1>
             </span>
-            <span className="subTitle">{playlistData?.description}</span>
+            <span className="subTitle">{tracks[0]?.artist}</span>
           </div>
         </div>
         <div className="operationSection">
-          <span
-            className="playPauseIcon"
-            onClick={playSongHandler}
-            // onClick={handleSpotifyLogin}
-          >
+          <span className="playPauseIcon" onClick={playSongHandler}>
             {isPlaying ? <GiPauseButton /> : <FaPlay />}
           </span>
           <span

@@ -9,6 +9,7 @@ import { GiPauseButton } from 'react-icons/gi';
 import { FaPlay } from 'react-icons/fa';
 import { LuListMusic } from 'react-icons/lu';
 import './NewPlayer.css';
+import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 
 const NewPlayer = () => {
   const {
@@ -16,24 +17,31 @@ const NewPlayer = () => {
     playerRef,
     playSongHandler,
     drawerOpen,
-    tracks,
+    // tracks,
     currentTrack,
     skipTrackHandler,
     songProgress,
     setSongProgress,
   } = useContext(PlayerContext);
 
+  const { tracks } = useContext(SpotifyMusicContext);
+
   const iconStyles = {
     fontSize: 24,
     color: '#D2E8D4',
   };
 
+  console.log(tracks);
+  console.log(currentTrack);
+
   useEffect(() => {
-    console.log(1);
-    tracks.map((song) =>
-      song === currentTrack ? (song.active = true) : (song.active = false)
-    );
+    tracks.map((song) => {
+      console.log(song);
+      song === currentTrack ? (song.active = true) : (song.active = false);
+    });
   }, [currentTrack, tracks, playerRef, isPlaying]);
+
+  console.log(currentTrack);
 
   const getTime = (time) => {
     return `${Math.floor(time / 60)}:${
