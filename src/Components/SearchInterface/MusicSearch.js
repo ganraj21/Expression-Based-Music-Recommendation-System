@@ -8,21 +8,17 @@ import { PlayerContext } from '../../PlayerContext';
 
 const MusicSearch = () => {
   const { tracks } = useContext(SpotifyMusicContext);
-  const { playerRef, currentTrack, timeUpdateHandler } =
+  const { playerRef, currentTrack, setTracks, timeUpdateHandler } =
     useContext(PlayerContext);
   const [newTrack, setNewTrack] = useState([]);
 
   console.log(currentTrack);
   useEffect(() => {
     const listData = JSON.parse(localStorage.getItem('FPath'));
-    console.log(listData);
     setNewTrack(listData);
-    // for (var i = 0; i < newTrack.length; i++) {
-    //   if (newTrack[i].preview_url != null) setNewTrack(newTrack[i]);
-    // }
+    setTracks(listData);
   }, [tracks]);
   console.log(newTrack);
-  // console.log(currentTrack[0]?.preview_url);
   return (
     <>
       <div className="InnerPageSection">
@@ -30,7 +26,7 @@ const MusicSearch = () => {
           <SideBarSection />
           <div className="rightMainContainer">
             <NavHeader />
-            <SearchPlayListLayout playlistData={currentTrack} />
+            <SearchPlayListLayout playlistData={currentTrack || newTrack} />
           </div>
           <NewPlayer />
           <audio

@@ -36,7 +36,6 @@ const NewPlayer = () => {
 
   useEffect(() => {
     tracks.map((song) => {
-      console.log(song);
       song === currentTrack ? (song.active = true) : (song.active = false);
     });
   }, [currentTrack, tracks, playerRef, isPlaying]);

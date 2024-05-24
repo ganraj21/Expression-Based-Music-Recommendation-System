@@ -117,7 +117,6 @@ const PlayerProvider = ({ children }) => {
         setCurrentTrack,
         playSongHandler,
         skipTrackHandler,
-        // handleSpotifyLogin,
         shuffle,
       }}
     >
