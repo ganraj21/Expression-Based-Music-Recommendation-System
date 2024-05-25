@@ -11,7 +11,6 @@ const SideBarSection = () => {
   const { userId } = useContext(MusicContext);
   const { setKeyword, keyword, fetchKeywordData, setResultOffset } =
     useContext(SpotifyMusicContext);
-  const [toSearch, isSetSearch] = useState(1);
   const Data = [
     {
       number: 1,
@@ -55,28 +54,24 @@ const SideBarSection = () => {
             <GoHome style={{ height: '30px', width: '27px' }} /> Home
           </span>
 
-          <span className="sidebarSearch" onClick={(e) => isSetSearch(0)}>
+          <span className="sidebarSearch">
             <IoSearchOutline style={{ height: '30px', width: '27px' }} />
-            {toSearch ? (
-              <>Search</>
-            ) : (
-              <>
-                <input
-                  type="text"
-                  value={keyword}
-                  onChange={(event) => setKeyword(event.target.value)}
-                  onKeyDown={handleKeyPress}
-                  style={{
-                    width: '85%',
-                    background: 'transparent',
-                    height: '36px',
-                    color: '#fff',
-                    paddingLeft: '10px',
-                    border: '1px #fff',
-                  }}
-                />
-              </>
-            )}
+
+            <input
+              type="text"
+              value={keyword}
+              placeholder="Search"
+              onChange={(event) => setKeyword(event.target.value)}
+              onKeyDown={handleKeyPress}
+              style={{
+                width: '85%',
+                background: 'transparent',
+                height: '36px',
+                color: '#fff',
+                paddingLeft: '0px',
+                border: '1px #fff',
+              }}
+            />
           </span>
         </div>
         <div className="bottomOperations">

@@ -15,17 +15,23 @@ const PlayListContainer = () => {
     skipTrackHandler,
   } = useContext(PlayerContext);
 
-  const { playListTracks } = useContext(SpotifyMusicContext);
+  const { playListTracks, setPlaylistTracks } = useContext(SpotifyMusicContext);
 
   console.log(currentTrack);
+
+  // const getValue = () => {
+  //   const Cardvalue = JSON.parse(localStorage.getItem('FPath'));
+  //   console.log(Cardvalue);
+  //   setPlaylistTracks(Cardvalue);
+  // };
+  useEffect(() => {
+    // getValue();
+    skipTrackHandler('next');
+  }, []);
 
   useEffect(() => {
     setTracks(playListTracks);
   }, [playListTracks]);
-
-  useEffect(() => {
-    skipTrackHandler('next');
-  }, []);
 
   return (
     <>

@@ -91,6 +91,7 @@ const VideoCapture = () => {
 
         // Get the corresponding value from the mapping
         const correspondingValue = emotionMapping[emotionValue];
+        localStorage.setItem('nextRouteId', correspondingValue);
         fetchPlaylistData('playlist', correspondingValue);
 
         setTimeout(() => {

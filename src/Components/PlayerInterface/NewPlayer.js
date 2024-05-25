@@ -31,8 +31,8 @@ const NewPlayer = () => {
     color: '#D2E8D4',
   };
 
-  console.log(tracks);
-  console.log(currentTrack);
+  // console.log(tracks);
+  // console.log(currentTrack);
 
   useEffect(() => {
     tracks.map((song) => {
@@ -40,7 +40,7 @@ const NewPlayer = () => {
     });
   }, [currentTrack, tracks, playerRef, isPlaying]);
 
-  console.log(currentTrack);
+  // console.log(currentTrack);
 
   const getTime = (time) => {
     return `${Math.floor(time / 60)}:${

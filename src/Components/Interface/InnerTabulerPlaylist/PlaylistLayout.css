@@ -76,6 +76,10 @@
 }
 .labelInfo {
   flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px; /* Adjust the width as needed */
 }
 .musicLabelInfo {
   gap: 15px;
@@ -94,6 +98,7 @@
 }
 .labelRow {
   cursor: pointer;
+  height: 78px;
 }
 .labelRow:hover {
   background: #2a2929;

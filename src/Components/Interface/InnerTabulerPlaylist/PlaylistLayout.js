@@ -7,16 +7,11 @@ import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
 import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
-// import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
-import { useLocation } from 'react-router-dom';
+
 const PlaylistLayout = ({ playlistData }) => {
-  const location = useLocation();
   const [likebtn, isLikeBtn] = useState(0);
   const [addPlaylist, isAddPlaylist] = useState(0);
 
-  const { state } = location;
-  const { e } = state;
-  console.log(e);
   const {
     tracks,
     setTracks,
@@ -30,8 +25,6 @@ const PlaylistLayout = ({ playlistData }) => {
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (CardInfo === undefined) setTracks(CardInfo);
-
-  console.log(tracks);
 
   const songSelectHandler = async (row) => {
     await setCurrentTrack(row);
@@ -56,9 +49,11 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardImage">
             <img
               src={
-                tracks[0]?.track?.album?.images[0].url ||
+                tracks[0]?.track?.album?.images[0]?.url ||
                 tracks[0]?.coverUrl ||
-                `https://source.unsplash.com/175x175/?${e.value}`
+                `https://source.unsplash.com/175x175/?${localStorage.getItem(
+                  'User-Emotion'
+                )}`
               }
               class="img-fluid rounded-top"
               alt="card"
@@ -70,7 +65,7 @@ const PlaylistLayout = ({ playlistData }) => {
               <h1>{tracks[0]?.title || tracks[0]?.track?.name}</h1>
             </span>
             <span className="subTitle">
-              {tracks[0]?.artist || tracks[0]?.track?.album?.artists[0].name}
+              {tracks[0]?.artist || tracks[0]?.track?.album?.artists[0]?.name}
             </span>
           </div>
         </div>
@@ -120,14 +115,16 @@ const PlaylistLayout = ({ playlistData }) => {
                     className="labelRow"
                     onClick={() => songSelectHandler(row)}
                   >
-                    <td style={tableCellStyle}>
+                    <td style={(tableCellStyle, customStyle)}>
                       <div className="musicLabelInfo">
                         <div className="musicLabelInfoImage">
                           <img
                             src={
                               row?.track?.album?.images[0]?.url ||
                               row?.coverUrl ||
-                              `https://source.unsplash.com/175x175/?${e?.value}`
+                              `https://source.unsplash.com/175x175/?${localStorage.getItem(
+                                'User-Emotion'
+                              )}`
                             }
                             alt="label Img"
                           />
@@ -144,7 +141,7 @@ const PlaylistLayout = ({ playlistData }) => {
                     </td>
 
                     <td style={tableCellStyle} className="labelAlbumName">
-                      {row?.artist || row?.track?.album?.artists[0].name}
+                      {row?.artist || row?.track?.album?.artists[0]?.name}
                     </td>
                     <td style={tableCellStyle} className="labelAlbumName">
                       {row?.track?.album?.name}
@@ -188,4 +185,8 @@ const tableHeaderStyle = {
 
 const tableCellStyle = {
   padding: '10px',
+};
+
+const customStyle = {
+  maxWidth: '320px',
 };

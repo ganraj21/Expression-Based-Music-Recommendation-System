@@ -57,33 +57,38 @@ const PlayerProvider = ({ children }) => {
     });
   };
 
-  const playSongHandler = () => {
+  const playSongHandler = async () => {
     if (!playerRef) {
       const currentSongIndex = tracks.findIndex(
         (song) => song === currentTrack
       );
       setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
     }
-    if (isPlaying) playerRef.current?.play();
-    if (isPlaying) {
-      try {
-        playerRef.current.pause();
-      } catch (e) {
-        console.log(e);
+    try {
+      if (isPlaying) await playerRef?.current?.play();
+      if (isPlaying) {
+        try {
+          await playerRef?.current?.pause();
+        } catch (e) {
+          console.log(e);
+        }
+        setIsPlaying(!isPlaying);
+      } else {
+        await playerRef?.current?.play();
+        setIsPlaying(!isPlaying);
       }
-      setIsPlaying(!isPlaying);
-    } else {
-      playerRef.current?.play();
-      setIsPlaying(!isPlaying);
+    } catch (e) {
+      console.log('error');
     }
   };
 
   const skipTrackHandler = useCallback(
     async (direction) => {
-      console.log(tracks);
       const currentSongIndex = tracks.findIndex(
         (song) => song === currentTrack
       );
+      //console.log(currentTrack);
+      // if (currentTrack?.track?.preview_url === null) skipTrackHandler('next');
       if (direction === 'next') {
         await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
         if (isPlaying) playerRef.current.play();
