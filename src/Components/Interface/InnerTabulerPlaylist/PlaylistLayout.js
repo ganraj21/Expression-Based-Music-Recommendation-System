@@ -7,11 +7,16 @@ import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
 import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
-
+// import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
+import { useLocation } from 'react-router-dom';
 const PlaylistLayout = ({ playlistData }) => {
+  const location = useLocation();
   const [likebtn, isLikeBtn] = useState(0);
   const [addPlaylist, isAddPlaylist] = useState(0);
-  // console.log(playlistData);
+
+  const { state } = location;
+  const { e } = state;
+  console.log(e);
   const {
     tracks,
     setTracks,
@@ -22,25 +27,6 @@ const PlaylistLayout = ({ playlistData }) => {
     currentTrack,
     playSongHandler,
   } = useContext(PlayerContext);
-
-  console.log(tracks);
-
-  // ------------------------------------------- >>>
-
-  // useEffect(() => {
-  //   // Initialize SpotifyWebApi instance
-  //   const spotifyApi = new SpotifyWebApi();
-  //   spotifyApi.setAccessToken('fab64f3955b24f40a381827c26f46756');
-
-  //   // Example: Fetch artist albums
-  //   spotifyApi.getArtistAlbums('ARTIST_ID', function (err, data) {
-  //     if (err) {
-  //       console.error(err);
-  //     } else {
-  //       console.log('Artist albums:', data);
-  //     }
-  //   });
-  // }, []);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (CardInfo === undefined) setTracks(CardInfo);
@@ -70,8 +56,9 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardImage">
             <img
               src={
+                tracks[0]?.track?.album?.images[0].url ||
                 tracks[0]?.coverUrl ||
-                `https://source.unsplash.com/175x175/?${'happy'}`
+                `https://source.unsplash.com/175x175/?${e.value}`
               }
               class="img-fluid rounded-top"
               alt="card"
@@ -80,9 +67,11 @@ const PlaylistLayout = ({ playlistData }) => {
           <div className="cardInfo">
             <span>Playlist</span>
             <span className="headerTitle">
-              <h1>{tracks[0]?.title}</h1>
+              <h1>{tracks[0]?.title || tracks[0]?.track?.name}</h1>
             </span>
-            <span className="subTitle">{tracks[0]?.artist}</span>
+            <span className="subTitle">
+              {tracks[0]?.artist || tracks[0]?.track?.album?.artists[0].name}
+            </span>
           </div>
         </div>
         <div className="operationSection">
@@ -113,6 +102,7 @@ const PlaylistLayout = ({ playlistData }) => {
             <thead>
               <tr style={{ borderBottom: '1px solid #8b8b8b' }}>
                 <th style={tableHeaderStyle}>Title</th>
+                <th style={tableHeaderStyle}>Artist</th>
                 <th style={tableHeaderStyle}>Album</th>
                 <th style={tableHeaderStyle}>#</th>
                 <th style={tableHeaderStyle}>
@@ -134,22 +124,30 @@ const PlaylistLayout = ({ playlistData }) => {
                       <div className="musicLabelInfo">
                         <div className="musicLabelInfoImage">
                           <img
-                            src={row?.album?.images[0].url || row.coverUrl}
+                            src={
+                              row?.track?.album?.images[0]?.url ||
+                              row?.coverUrl ||
+                              `https://source.unsplash.com/175x175/?${e?.value}`
+                            }
                             alt="label Img"
                           />
                         </div>
                         <div className="labelInfo">
                           <span className="mainTitleName">
-                            {row?.name || row?.title}
+                            {row?.track?.name || row?.title}
                           </span>
                           <span className="subTitleName">
-                            {row?.description}
+                            {row?.track?.album?.name}
                           </span>
                         </div>
                       </div>
                     </td>
+
                     <td style={tableCellStyle} className="labelAlbumName">
-                      {row?.artist}
+                      {row?.artist || row?.track?.album?.artists[0].name}
+                    </td>
+                    <td style={tableCellStyle} className="labelAlbumName">
+                      {row?.track?.album?.name}
                     </td>
                     <td
                       style={tableCellStyle}

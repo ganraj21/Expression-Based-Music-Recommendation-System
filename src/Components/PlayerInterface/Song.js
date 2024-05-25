@@ -19,13 +19,16 @@ export const Song = () => {
       // }}
     >
       <img
-        src={currentTrack?.album?.images[0].url || currentTrack?.coverUrl}
+        src={
+          currentTrack?.album?.images[0].url ||
+          currentTrack?.track?.album?.images[0].url
+        }
         className={isPlaying ? 'spinning__cover' : ''}
-        alt={currentTrack?.title || currentTrack?.album?.name}
+        alt={currentTrack?.track?.album?.name || currentTrack?.album?.name}
       />
       <div className="metaInfo">
-        <h1>{currentTrack?.title || currentTrack?.album?.name}</h1>
-        <h2>{currentTrack?.artist}</h2>
+        <h1>{currentTrack?.track?.album?.name || currentTrack?.album?.name}</h1>
+        <h2>{currentTrack?.track?.album?.artists[0].name}</h2>
       </div>
     </div>
   );

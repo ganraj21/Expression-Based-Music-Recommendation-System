@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MusicContext } from '../../../MusicContext';
+import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
 
 const CardLayout = () => {
   const { greeting, cardData, setVideoCh } = useContext(MusicContext);
+  const { fetchPlaylistData } = useContext(SpotifyMusicContext);
   const navigate = useNavigate();
 
   return (
@@ -25,7 +27,9 @@ const CardLayout = () => {
                       if (e.title !== 'AI Generated Playlist') {
                         localStorage.setItem('FPath', JSON.stringify(e));
                         localStorage.setItem('nextRoute', 'p');
-                        navigate(`/user/playlist/${e.title}`, {
+                        localStorage.setItem('nextRouteId', e.titleId);
+                        fetchPlaylistData('playlist', e.titleId);
+                        navigate(`/user/playlist/${e.titleId}`, {
                           state: {
                             e,
                           },
@@ -34,7 +38,6 @@ const CardLayout = () => {
                       } else if (e.title === 'AI Generated Playlist') {
                         setVideoCh(1);
                       }
-                      // navigate(`/user/capture`);
                     }}
                   >
                     <img src={e.work_img} alt="music section" />

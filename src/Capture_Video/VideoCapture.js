@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Webcam from 'react-webcam';
 import './VideoCapture.css';
 import { MusicContext } from '../MusicContext';
+import { SpotifyMusicContext } from '../SpotifyMusicContext';
 
 const VideoCapture = () => {
   const webcamRef = useRef(null);
@@ -12,7 +13,7 @@ const VideoCapture = () => {
   const navigate = useNavigate();
   const [EmotionValue, setEmotionValue] = useState(null);
   const { userId, videoCh, setVideoCh } = useContext(MusicContext);
-
+  const { fetchPlaylistData } = useContext(SpotifyMusicContext);
   const captureImage = async () => {
     if (!webcamRef.current || !canvasRef.current) {
       return;
@@ -69,6 +70,16 @@ const VideoCapture = () => {
       // Log the received prediction data for debugging
       console.log('Received prediction data:', pred_log);
 
+      const emotionMapping = {
+        happy: '4XCCOQSZcfqMGPlnC5C1JS',
+        sad: '189Sow1xr7R94oSKs4kISc',
+        fear: '4pUX3ojKN2OxXP7I4Lu9ij',
+        angry: '0a4Hr64HWlxekayZ8wnWqx',
+        neutral: '7EClwmhqu7mg4JvUI9z5DT',
+        surprise: '3FDsPHUToNnMClpbcQ1fyj',
+        disgust: '00rKsL5mOjzeMuwMsVzBLK',
+      };
+
       // Ensure that 'emotion' property exists in pred_log
       if (pred_log && pred_log['emotion']) {
         // Get the emotion value
@@ -78,13 +89,15 @@ const VideoCapture = () => {
         setEmotionValue(emotionValue);
         toast.success(emotionValue);
 
+        // Get the corresponding value from the mapping
+        const correspondingValue = emotionMapping[emotionValue];
+        fetchPlaylistData('playlist', correspondingValue);
+
         setTimeout(() => {
-          // const e = JSON.parse(localStorage.getItem('FPath'));
-          const e = emotionValue;
-          console.log(e);
-          navigate(`/user/playlist/${emotionValue}`, {
+          // Navigate to the corresponding playlist
+          navigate(`/user/playlist/${correspondingValue}`, {
             state: {
-              e,
+              e: emotionValue,
             },
           });
         }, 2000);

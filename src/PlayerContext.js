@@ -24,20 +24,20 @@ const PlayerProvider = ({ children }) => {
     return array.sort(() => Math.random() - 0.5);
   };
 
-  useEffect(() => {
-    const getMusicData = async () => {
-      const res = await fetch(`${uri}/PlaylistSongs`);
+  // useEffect(() => {
+  //   const getMusicData = async () => {
+  //     const res = await fetch(`${uri}/PlaylistSongs`);
 
-      if (res.ok) {
-        const result = await res.json();
-        setTracks(shuffle(result));
-        console.log(tracks);
-      } else {
-        throw new Error('System Error');
-      }
-    };
-    setTimeout(getMusicData, 1500);
-  }, []);
+  //     if (res.ok) {
+  //       const result = await res.json();
+  //       setTracks(shuffle(result));
+  //       console.log(tracks);
+  //     } else {
+  //       throw new Error('System Error');
+  //     }
+  //   };
+  //   setTimeout(getMusicData, 2500);
+  // }, []);
 
   const [currentTrack, setCurrentTrack] = useState([]);
   useEffect(() => {

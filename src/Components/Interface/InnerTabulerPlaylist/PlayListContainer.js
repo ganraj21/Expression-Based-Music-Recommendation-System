@@ -1,17 +1,27 @@
 import React, { useContext, useEffect } from 'react';
 import PlaylistLayout from './PlaylistLayout';
-import { useLocation } from 'react-router-dom';
 import NewPlayer from '../../PlayerInterface/NewPlayer';
 import SideBarSection from '../../SidebarInterface/SideBarSection';
 import NavHeader from '../../HeaderNavigation/NavHeader';
 import { PlayerContext } from '../../../PlayerContext';
+import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
 
 const PlayListContainer = () => {
-  const location = useLocation();
-  const { playerRef, currentTrack, timeUpdateHandler, skipTrackHandler } =
-    useContext(PlayerContext);
-  const { state } = location;
-  const { e } = state;
+  const {
+    playerRef,
+    currentTrack,
+    setTracks,
+    timeUpdateHandler,
+    skipTrackHandler,
+  } = useContext(PlayerContext);
+
+  const { playListTracks } = useContext(SpotifyMusicContext);
+
+  console.log(currentTrack);
+
+  useEffect(() => {
+    setTracks(playListTracks);
+  }, [playListTracks]);
 
   useEffect(() => {
     skipTrackHandler('next');
@@ -24,14 +34,14 @@ const PlayListContainer = () => {
           <SideBarSection />
           <div className="rightMainContainer">
             <NavHeader />
-            <PlaylistLayout playlistData={e} />
+            <PlaylistLayout />
           </div>
           <NewPlayer />
           <audio
             onTimeUpdate={timeUpdateHandler}
             onLoadedMetadata={timeUpdateHandler}
             ref={playerRef}
-            src={currentTrack?.audio}
+            src={currentTrack?.track?.preview_url}
           />
         </div>
       </div>

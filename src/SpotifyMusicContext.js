@@ -12,26 +12,32 @@ const SpotifyAPIContextProvider = ({ children }) => {
   const [keyword, setKeyword] = useState('');
   const [message, setMessage] = useState('');
   const [tracks, setTracks] = useState([]);
+  const [playListTracks, setPlaylistTracks] = useState([]);
   const [token, setToken] = useState(null);
 
-  const { setCurrentTrack } = useContext(PlayerContext);
-  const fetchMusicData = async () => {
+  const { setCurrentTrack, shuffle } = useContext(PlayerContext);
+  const fetchKeywordData = async (reqType) => {
     setTracks([]);
     setCurrentTrack([]);
     window.scrollTo(0, 0);
     setIsLoading(true);
+    var reqURL = '';
+
+    if (reqType === 'keyword') {
+      reqURL = `https://api.spotify.com/v1/search?q=${keyword}&type=track&offset=${resultOffset}`;
+    }
+    // else if (reqType === 'artists') {
+    //   reqURL = `https://api.spotify.com/v1/artists/${reqId}/albums`;
+    // } else
+    //  {
+    //   reqURL = `https://api.spotify.com/v1/albums/${reqId}`;
+    // }
     try {
-      const response = await fetch(
-        // `https://api.spotify.com/v1/playlists/37i9dQZF1DXbVhgADFy3im`,
-        // 'https://api.spotify.com/v1/albums/0a183xiCHiC1GQd8ou7WXO',
-        // 'https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw/albums',
-        `https://api.spotify.com/v1/search?q=${keyword}&type=track&offset=${resultOffset}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(reqURL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (!response.ok) {
         throw new Error('Failed to fetch music data');
@@ -42,12 +48,13 @@ const SpotifyAPIContextProvider = ({ children }) => {
       if (typeof jsonData === 'object' && jsonData !== null) {
         setTracks(Object.keys(jsonData).map((key) => jsonData[key]));
       } else {
-        setTracks(jsonData?.tracks.items);
+        setTracks(jsonData?.tracks?.items);
       }
+
       // Convert object properties to an array of objects
-      setTracks(jsonData?.tracks.items);
-      setCurrentTrack(jsonData?.tracks.items[0]);
-      localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks.items));
+      setTracks(jsonData?.tracks?.items);
+      setCurrentTrack(jsonData?.tracks?.items[0]);
+      localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks?.items));
       localStorage.setItem('nextRoute', 's');
     } catch (error) {
       setMessage(error.message);
@@ -56,6 +63,44 @@ const SpotifyAPIContextProvider = ({ children }) => {
     }
   };
 
+  const fetchPlaylistData = async (reqType, reqId) => {
+    setTracks([]);
+    setPlaylistTracks([]);
+    window.scrollTo(0, 0);
+    setIsLoading(true);
+    var reqURL = '';
+
+    if (reqType === 'playlist') {
+      reqURL = `https://api.spotify.com/v1/playlists/${reqId}`;
+    } else if (reqType === 'artists') {
+      reqURL = `https://api.spotify.com/v1/artists/${reqId}/albums`;
+    } else {
+      reqURL = `https://api.spotify.com/v1/albums/${reqId}`;
+    }
+    try {
+      const response = await fetch(reqURL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch music data');
+      }
+
+      const jsonData = await response.json();
+
+      // Convert object properties to an array of objects
+      setPlaylistTracks(shuffle(jsonData?.tracks?.items));
+      // console.log(jsonData?.tracks?.items);
+      localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks?.items));
+      localStorage.setItem('nextRoute', 'p');
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   useEffect(() => {
     setCurrentTrack(tracks[0]?.items[0]);
   }, []);
@@ -94,7 +139,10 @@ const SpotifyAPIContextProvider = ({ children }) => {
   return (
     <SpotifyMusicContext.Provider
       value={{
-        fetchMusicData,
+        fetchKeywordData,
+        fetchPlaylistData,
+        setPlaylistTracks,
+        playListTracks,
         isLoading,
         setIsLoading,
         likedMusic,

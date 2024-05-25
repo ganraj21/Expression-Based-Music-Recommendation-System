@@ -13,14 +13,15 @@ const NavHeader = () => {
   const navigate = useNavigate();
   const [userActions, setUserAction] = useState(0);
   const { setVideoCh, videoCh } = useContext(MusicContext);
-  const { setKeyword, keyword, fetchMusicData, setResultOffset } =
+  const { setKeyword, keyword, fetchKeywordData, setResultOffset } =
     useContext(SpotifyMusicContext);
-  const { currentTrack, shuffle, tracks, setTracks } =
+  const { currentTrack, shuffle, tracks, isPlaying, setIsPlaying } =
     useContext(PlayerContext);
 
   const goBackward = () => {
     shuffle(tracks);
     setKeyword('');
+    if (isPlaying === true) setIsPlaying(!isPlaying);
     const UserId = localStorage.getItem('UserId');
     navigate(`/user/${UserId}`);
     if (videoCh) setVideoCh(0);
@@ -28,14 +29,12 @@ const NavHeader = () => {
 
   const goForward = () => {
     const CardInfo = JSON.parse(localStorage.getItem('FPath'));
-
-    // setTracks(CardInfo);
     shuffle(tracks);
     try {
-      console.log(CardInfo.title);
       let nextResult = localStorage.getItem('nextRoute');
+      let nextResultId = localStorage.getItem('nextRouteId');
       navigate(
-        `/user/${nextResult === 's' ? 'search' : 'playlist'}/${CardInfo.title}`,
+        `/user/${nextResult === 's' ? 'search' : 'playlist'}/${nextResultId}`,
         {
           state: {
             CardInfo,
@@ -57,7 +56,7 @@ const NavHeader = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       setResultOffset(0);
-      fetchMusicData();
+      fetchKeywordData('keyword');
       navigate(`/user/search/${keyword}`);
     }
   };

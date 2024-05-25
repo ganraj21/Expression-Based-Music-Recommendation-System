@@ -9,7 +9,7 @@ import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 const SideBarSection = () => {
   const navigate = useNavigate();
   const { userId } = useContext(MusicContext);
-  const { setKeyword, keyword, fetchMusicData, setResultOffset } =
+  const { setKeyword, keyword, fetchKeywordData, setResultOffset } =
     useContext(SpotifyMusicContext);
   const [toSearch, isSetSearch] = useState(1);
   const Data = [
@@ -38,7 +38,7 @@ const SideBarSection = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       setResultOffset(0);
-      fetchMusicData();
+      fetchKeywordData('keyword');
       navigate(`/user/search/${keyword}`);
     }
   };

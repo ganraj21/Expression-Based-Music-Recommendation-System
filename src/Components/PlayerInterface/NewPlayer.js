@@ -17,14 +17,14 @@ const NewPlayer = () => {
     playerRef,
     playSongHandler,
     drawerOpen,
-    // tracks,
+    tracks,
     currentTrack,
     skipTrackHandler,
     songProgress,
     setSongProgress,
   } = useContext(PlayerContext);
 
-  const { tracks } = useContext(SpotifyMusicContext);
+  // const { tracks } = useContext(SpotifyMusicContext);
 
   const iconStyles = {
     fontSize: 24,
