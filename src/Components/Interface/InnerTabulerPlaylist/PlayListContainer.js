@@ -8,6 +8,7 @@ import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
 
 const PlayListContainer = () => {
   const {
+    tracks,
     playerRef,
     currentTrack,
     setTracks,
@@ -15,19 +16,11 @@ const PlayListContainer = () => {
     skipTrackHandler,
   } = useContext(PlayerContext);
 
-  const { playListTracks, setPlaylistTracks } = useContext(SpotifyMusicContext);
+  const { playListTracks } = useContext(SpotifyMusicContext);
 
-  console.log(currentTrack);
-
-  // const getValue = () => {
-  //   const Cardvalue = JSON.parse(localStorage.getItem('FPath'));
-  //   console.log(Cardvalue);
-  //   setPlaylistTracks(Cardvalue);
-  // };
   useEffect(() => {
-    // getValue();
     skipTrackHandler('next');
-  }, []);
+  }, [tracks]);
 
   useEffect(() => {
     setTracks(playListTracks);

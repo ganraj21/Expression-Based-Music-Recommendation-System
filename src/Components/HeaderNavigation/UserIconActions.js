@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 const UserIconActions = () => {
   const navigate = useNavigate();
   const UserAction = () => {
-    localStorage.setItem('UserId', '');
-    navigate('/');
+    const userConfirmed = window.confirm('Are you sure you want to Logout');
+
+    if (userConfirmed) {
+      localStorage.setItem('UserId', '');
+      navigate('/');
+    }
   };
 
   return (

@@ -14,8 +14,6 @@ const SearchPlayListLayout = ({ playlistData }) => {
   const [addPlaylist, isAddPlaylist] = useState(0);
   const { tracks } = useContext(SpotifyMusicContext);
   const {
-    // tracks,
-    // setTracks,
     setCurrentTrack,
     playerRef,
     isPlaying,
@@ -23,12 +21,6 @@ const SearchPlayListLayout = ({ playlistData }) => {
     currentTrack,
     playSongHandler,
   } = useContext(PlayerContext);
-
-  // console.log(tracks);
-  // console.log(playlistData);
-  // console.log(currentTrack);
-  //   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
-  // if (playlistData === undefined) playlistData = CardInfo;
 
   const songSelectHandler = async (row) => {
     await setCurrentTrack(row);

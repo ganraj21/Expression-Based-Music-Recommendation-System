@@ -7,6 +7,7 @@ import { IoTimeOutline } from 'react-icons/io5';
 import './PlaylistLayout.css';
 import { PlayerContext } from '../../../PlayerContext';
 import { MdPlaylistAdd, MdPlaylistAddCheck } from 'react-icons/md';
+import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
 
 const PlaylistLayout = ({ playlistData }) => {
   const [likebtn, isLikeBtn] = useState(0);
@@ -22,6 +23,8 @@ const PlaylistLayout = ({ playlistData }) => {
     currentTrack,
     playSongHandler,
   } = useContext(PlayerContext);
+
+  const { setLikedMusic, likedMusic } = useContext(SpotifyMusicContext);
 
   const CardInfo = JSON.parse(localStorage.getItem('FPath'));
   if (CardInfo === undefined) setTracks(CardInfo);
@@ -79,7 +82,7 @@ const PlaylistLayout = ({ playlistData }) => {
               isAddPlaylist(!addPlaylist);
             }}
           >
-            {addPlaylist ? <MdPlaylistAdd /> : <MdPlaylistAddCheck />}
+            {addPlaylist ? <MdPlaylistAddCheck /> : <MdPlaylistAdd />}
           </span>
           <div className="listIcon">
             <span className="listIconBtn">
@@ -150,10 +153,15 @@ const PlaylistLayout = ({ playlistData }) => {
                       style={tableCellStyle}
                       className="labelLike"
                       onClick={() => {
+                        setLikedMusic(row?.track);
+                        localStorage.setItem(
+                          'likedMusic',
+                          JSON.stringify(likedMusic)
+                        );
                         isLikeBtn(!likebtn);
                       }}
                     >
-                      {likebtn ? <IoMdHeartEmpty /> : <FaHeart />}
+                      {likebtn ? <FaHeart /> : <IoMdHeartEmpty />}
                     </td>
                     <td style={tableCellStyle} className="labelTimeZone">
                       {row?.time}

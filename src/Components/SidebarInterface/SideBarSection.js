@@ -103,11 +103,15 @@ const SideBarSection = () => {
                   className="libraryplcontainer"
                   key={index}
                   onClick={() => {
-                    navigate(`/user/${index}`, {
-                      state: {
-                        e,
-                      },
-                    });
+                    // if (Data.title === 'Liked Songs') {
+                    navigate(`/user/playlist/liked-Music`);
+                    // return;
+                    // }
+                    // navigate(`/user/${index}`, {
+                    //   state: {
+                    //     e,
+                    //   },
+                    // });
                   }}
                 >
                   <div className="libraryImg">

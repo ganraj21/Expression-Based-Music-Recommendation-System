@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import SideBarSection from '../SidebarInterface/SideBarSection';
 import NavHeader from '../HeaderNavigation/NavHeader';
-import { SpotifyMusicContext } from '../../SpotifyMusicContext';
+// import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 import SearchPlayListLayout from './SearchPlayListLayout';
 import NewPlayer from '../PlayerInterface/NewPlayer';
 import { PlayerContext } from '../../PlayerContext';
 
 const MusicSearch = () => {
-  const { tracks } = useContext(SpotifyMusicContext);
-  const { playerRef, currentTrack, setTracks, timeUpdateHandler } =
+  // const { tracks } = useContext(SpotifyMusicContext);
+  const { playerRef, currentTrack, timeUpdateHandler } =
     useContext(PlayerContext);
-  const [newTrack, setNewTrack] = useState([]);
+  // const [newTrack, setNewTrack] = useState([]);
 
   console.log(currentTrack);
-  useEffect(() => {
-    const listData = JSON.parse(localStorage.getItem('FPath'));
-    setNewTrack(listData);
-    setTracks(listData);
-  }, [tracks]);
-  console.log(newTrack);
+  // useEffect(() => {
+  //   const listData = JSON.parse(localStorage.getItem('FPath'));
+  //   setNewTrack(listData);
+  //   setTracks(listData);
+  // }, [tracks]);
+  // console.log(newTrack);
   return (
     <>
       <div className="InnerPageSection">
@@ -26,7 +26,7 @@ const MusicSearch = () => {
           <SideBarSection />
           <div className="rightMainContainer">
             <NavHeader />
-            <SearchPlayListLayout playlistData={currentTrack || newTrack} />
+            <SearchPlayListLayout playlistData={currentTrack} />
           </div>
           <NewPlayer />
           <audio
@@ -34,7 +34,7 @@ const MusicSearch = () => {
             onTimeUpdate={timeUpdateHandler}
             onLoadedMetadata={timeUpdateHandler}
             ref={playerRef}
-            src={currentTrack?.preview_url || newTrack?.preview_url}
+            src={currentTrack?.preview_url}
           />
         </div>
       </div>

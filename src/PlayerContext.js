@@ -42,6 +42,9 @@ const PlayerProvider = ({ children }) => {
   const [currentTrack, setCurrentTrack] = useState([]);
   useEffect(() => {
     setCurrentTrack(tracks[0]);
+    if (currentTrack?.track?.preview_url == null) {
+      skipTrackHandler('next');
+    }
   }, []);
 
   const timeUpdateHandler = (e) => {
@@ -87,8 +90,7 @@ const PlayerProvider = ({ children }) => {
       const currentSongIndex = tracks.findIndex(
         (song) => song === currentTrack
       );
-      //console.log(currentTrack);
-      // if (currentTrack?.track?.preview_url === null) skipTrackHandler('next');
+      console.log('reached..');
       if (direction === 'next') {
         await setCurrentTrack(tracks[(currentSongIndex + 1) % tracks.length]);
         if (isPlaying) playerRef.current.play();

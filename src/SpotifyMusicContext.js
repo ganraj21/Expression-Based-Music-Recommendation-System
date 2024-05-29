@@ -53,6 +53,7 @@ const SpotifyAPIContextProvider = ({ children }) => {
 
       // Convert object properties to an array of objects
       setTracks(jsonData?.tracks?.items);
+      console.log(jsonData?.tracks?.items);
       setCurrentTrack(jsonData?.tracks?.items[0]);
       localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks?.items));
       localStorage.setItem('nextRoute', 's');
@@ -92,7 +93,6 @@ const SpotifyAPIContextProvider = ({ children }) => {
 
       // Convert object properties to an array of objects
       setPlaylistTracks(shuffle(jsonData?.tracks?.items));
-      // console.log(jsonData?.tracks?.items);
       localStorage.setItem('FPath', JSON.stringify(jsonData?.tracks?.items));
       localStorage.setItem('nextRoute', 'p');
     } catch (error) {
@@ -101,9 +101,33 @@ const SpotifyAPIContextProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
+  const refreshPageLoadData = (localData) => {
+    // Filter out tracks with null preview_url
+    const validTracks = localData.filter(
+      (track) => track?.track?.preview_url !== null
+    );
+
+    const routeValue = localStorage.getItem('nextRoute');
+    if (routeValue === 'p' || routeValue === 's') {
+      if (tracks[0]?.items[0] == null) {
+        setPlaylistTracks(validTracks);
+        setTracks(validTracks);
+        setCurrentTrack(validTracks[0]);
+        console.log(validTracks[0]);
+        console.log('next working..');
+      } else {
+        setCurrentTrack(tracks[0]?.items[0]);
+      }
+    } else {
+    }
+  };
   useEffect(() => {
-    setCurrentTrack(tracks[0]?.items[0]);
+    const localData = JSON.parse(localStorage.getItem('FPath')) || [];
+    console.log(localData);
+    refreshPageLoadData(localData);
   }, []);
+
   // current client credentials will be deleted in few days
   const fetchToken = async () => {
     try {
