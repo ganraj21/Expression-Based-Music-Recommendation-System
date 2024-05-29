@@ -63,7 +63,7 @@ const PlaylistLayout = ({ playlistData }) => {
             />
           </div>
           <div className="cardInfo">
-            <span>Playlist</span>
+            <span>Playlist {localStorage.getItem('User-Emotion')}</span>
             <span className="headerTitle">
               <h1>{tracks[0]?.title || tracks[0]?.track?.name}</h1>
             </span>

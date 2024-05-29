@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { GoHome } from 'react-icons/go';
 import { IoSearchOutline } from 'react-icons/io5';
@@ -8,9 +9,17 @@ import { MusicContext } from '../../MusicContext';
 import { SpotifyMusicContext } from '../../SpotifyMusicContext';
 const SideBarSection = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { userId } = useContext(MusicContext);
   const { setKeyword, keyword, fetchKeywordData, setResultOffset } =
     useContext(SpotifyMusicContext);
+
+  const { state } = location;
+
+  // const { customStyle } = state;
+
+  console.log(state);
+
   const Data = [
     {
       number: 1,
@@ -43,7 +52,16 @@ const SideBarSection = () => {
   };
   return (
     <>
-      <div className="sideBarContainer">
+      <div
+        className="sideBarContainer"
+        style={{
+          display: state?.customStyle?.Display,
+          width: state?.customStyle?.Width,
+          padding: state?.customStyle?.Padding,
+          margin: state?.customStyle?.Margin,
+          color: state?.customStyle?.Color,
+        }}
+      >
         <div className="topNav">
           <span
             className="sidebarHome"

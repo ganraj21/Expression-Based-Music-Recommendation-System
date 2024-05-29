@@ -28,6 +28,7 @@ const CardLayout = () => {
                         localStorage.setItem('FPath', JSON.stringify(e));
                         localStorage.setItem('nextRoute', 'p');
                         localStorage.setItem('nextRouteId', e.titleId);
+                        localStorage.setItem('User-Emotion', '');
                         fetchPlaylistData('playlist', e.titleId);
                         navigate(`/user/playlist/${e.titleId}`, {
                           state: {

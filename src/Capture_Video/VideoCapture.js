@@ -104,7 +104,7 @@ const VideoCapture = () => {
         }, 2000);
 
         // Update localStorage if needed
-        localStorage.setItem('User-Emotion', emotionValue);
+        localStorage.setItem('User-Emotion', `: ${emotionValue}`);
       } else {
         console.error('Emotion data not found in prediction:', pred_log);
       }

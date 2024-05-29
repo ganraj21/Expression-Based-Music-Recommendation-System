@@ -17,7 +17,8 @@
   border-radius: 10px;
 }
 
-.msCard h4 {
+.msCard h4,
+.msCard h5 {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
@@ -165,7 +166,7 @@
 }
 .msCard h5 {
   font-size: 0.875rem;
-  width: 150px;
+  /* width: 150px; */
   color: #a7a7a7;
   -webkit-line-clamp: 2;
 }
@@ -324,6 +325,7 @@
 @media only screen and (max-width: 800px) {
   .sideBarContainer {
     display: none;
+    margin: 0px !important;
   }
   .PCInnerContainer {
     height: 100%;
@@ -351,7 +353,7 @@
   }
 }
 
-@media only screen and (max-width: 388px) {
+@media only screen and (max-width: 372px) {
   .musicSectionCard {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
