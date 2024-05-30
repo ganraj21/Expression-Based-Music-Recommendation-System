@@ -10,6 +10,21 @@ const MusicProvider = ({ children }) => {
 
   const uri = 'https://emotion-based-mrs-data.onrender.com';
 
+  useEffect(() => {
+    const getFrontData = async () => {
+      const response = await fetch(`${uri}/CardLayout`);
+
+      if (response.ok) {
+        const result = await response.json();
+        setCardData(result);
+      } else {
+        throw new Error('System Error');
+      }
+    };
+
+    getFrontData();
+  }, []);
+
   // --------------------------------- User Id --------------->
   useEffect(() => {
     const id = localStorage.getItem('UserId');
@@ -34,21 +49,6 @@ const MusicProvider = ({ children }) => {
     const intervalId = setInterval(updateGreeting, 60000);
 
     return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []);
-
-  useEffect(() => {
-    const getFrontData = async () => {
-      const response = await fetch(`${uri}/CardLayout`);
-
-      if (response.ok) {
-        const result = await response.json();
-        setCardData(result);
-      } else {
-        throw new Error('System Error');
-      }
-    };
-
-    getFrontData();
   }, []);
 
   const playerController = () => {
