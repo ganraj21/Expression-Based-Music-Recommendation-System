@@ -296,6 +296,34 @@
   flex-wrap: wrap !important;
 }
 
+/* -------------------- loader component --------> */
+
+.load_container {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  animation: rotation 1s linear infinite;
+}
+.style_loader {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* ----------------- responsive styles --------------- */
 @media only screen and (min-width: 440px) {
   .UserActionContainer {

@@ -9,16 +9,16 @@ import { SpotifyMusicContext } from '../../../SpotifyMusicContext';
 import { MusicContext } from '../../../MusicContext';
 
 const InnerFrontPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { fetchToken } = useContext(SpotifyMusicContext);
   const { videoCh } = useContext(MusicContext);
 
-  useEffect(() => {
-    const UserId = localStorage.getItem('UserId');
-    if (!UserId) {
-      navigate(`/`);
-    }
-  }, [videoCh]);
+  // useEffect(() => {
+  //   const UserId = localStorage.getItem('UserId');
+  //   if (!UserId) {
+  //     navigate(`/`);
+  //   }
+  // }, [videoCh]);
   console.log(fetchToken);
   return (
     <>
