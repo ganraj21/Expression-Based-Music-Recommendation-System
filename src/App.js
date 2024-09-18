@@ -12,16 +12,12 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<InnerFrontPage />} />
-          <Route element={<PrivateRoutes />}>
-            <Route exact path="/user" element={<InnerFrontPage />} />
-            <Route
-              exact
-              path="user/playlist/"
-              element={<PlayListContainer />}
-            />
-            <Route exact path="/user/search/" element={<MusicSearch />} />
-            <Route exact path="/user/setting" element={<SideBarSection />} />
-          </Route>
+          {/* <Route element={<PrivateRoutes />}> */}
+          <Route exact path="/user" element={<InnerFrontPage />} />
+          <Route exact path="user/playlist/" element={<PlayListContainer />} />
+          <Route exact path="/user/search/" element={<MusicSearch />} />
+          <Route exact path="/user/setting" element={<SideBarSection />} />
+          {/* </Route> */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
