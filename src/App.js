@@ -11,7 +11,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<PhoneAuth />} />
+          <Route exact path="/" element={<InnerFrontPage />} />
           <Route element={<PrivateRoutes />}>
             <Route exact path="/user/:id" element={<InnerFrontPage />} />
             <Route
