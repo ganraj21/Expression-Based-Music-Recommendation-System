@@ -16,7 +16,7 @@ const App = () => {
             <Route exact path="/user" element={<InnerFrontPage />} />
             <Route
               exact
-              path="user/playlist/:id"
+              path="user/playlist/"
               element={<PlayListContainer />}
             />
             <Route exact path="/user/search/" element={<MusicSearch />} />
