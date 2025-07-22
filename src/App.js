@@ -11,9 +11,9 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<PhoneAuth />} />
-          <Route element={<PrivateRoutes />}>
-            <Route exact path="/user/:id" element={<InnerFrontPage />} />
+          {/* <Route exact path="/" element={<PhoneAuth />} /> */}
+          {/* <Route element={<PrivateRoutes />}> */}
+            <Route exact path="/" element={<InnerFrontPage />} />
             <Route
               exact
               path="user/playlist/:id"
@@ -25,7 +25,7 @@ const App = () => {
               path="/user/:id/setting"
               element={<SideBarSection />}
             />
-          </Route>
+          {/* </Route> */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
